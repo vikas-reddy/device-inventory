@@ -16,6 +16,7 @@
       %th Provider
       %th Mac addr
       %th IP
+      %th Status
       %th
     - @devices.each do |device|
       %tr
@@ -31,6 +32,7 @@
         %td= device.service_provider
         %td= device.mac_addr
         %td= device.ip_addr
+        %td= device.status
         %td
           %div
             = link_to 'Show', device, :class => "btn btn-primary btn-small"

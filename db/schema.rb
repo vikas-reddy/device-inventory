@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706083939) do
+ActiveRecord::Schema.define(:version => 20120706102907) do
 
   create_table "devices", :force => true do |t|
     t.string   "serial_num"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120706083939) do
     t.integer  "possesser_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "status"
   end
 
   create_table "users", :force => true do |t|
