@@ -21,8 +21,7 @@
               %span.caret
             %ul.dropdown-menu
               - if user_signed_in?
-                %li
-                  %a{:href => "#"} Profile
+                %li= link_to 'Profile', '/users/edit'
                 %li.divider
                 %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
               - else
