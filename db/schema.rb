@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706070650) do
+ActiveRecord::Schema.define(:version => 20120706075502) do
 
   create_table "devices", :force => true do |t|
     t.string   "serial_num"
-    t.string   "type"
+    t.string   "device_type"
     t.string   "make"
     t.string   "model"
     t.string   "os"
