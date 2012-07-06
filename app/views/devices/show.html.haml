@@ -35,12 +35,6 @@
 %p
   %b Ip addr:
   = @device.ip_addr
-%p
-  %b Owner:
-  = @device.owner_id
-%p
-  %b Possesser:
-  = @device.possesser_id
 = link_to 'Edit', edit_device_path(@device)
 |
 \#{link_to 'Back', devices_path}
