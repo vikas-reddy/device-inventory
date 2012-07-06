@@ -1,4 +1,6 @@
 class DevicesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /devices
   # GET /devices.json
   def index
