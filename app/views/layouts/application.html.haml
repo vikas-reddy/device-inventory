@@ -6,15 +6,14 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-  %body
-    .navbar.navbar-fixed-top
+    .navbar
       .navbar-inner
         .container-fluid
           %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand{:href => "#"} Device Inventory
+          %a.brand{:href => "/"} Device Inventory
           .btn-group.pull-right
             %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.icon-user
@@ -38,48 +37,28 @@
               %li
                 %a{:href => "#contact"} Contact
           / /.nav-collapse
-    .container-fluid
-      .row-fluid
-        .span2
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li.nav-header Sidebar
-              %li
-                = link_to 'Add Device', new_device_path
-              %li
-                = link_to 'Search Devices', '#'
-              %li
-                = link_to 'List Devices', devices_path
-              %li.nav-header Sidebar
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-              %li.nav-header Sidebar
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-              %li
-                %a{:href => "#"} Link
-          / /.well
-        / /span
-        .span10
-          .hero-unit
-            = render 'shared/flashes'
-            = yield
-        / /span
-      / /row
-      %hr/
-      %footer
-        %p &copy; Copyright.Imaginea.2012.
-    / /.fluid-container
+    - if user_signed_in?
+      .container-fluid
+        .row-fluid
+          .span3
+            = render 'shared/sidebar'
+          / /span
+          .span9
+            .hero-unit
+              = render 'shared/flashes'
+              = yield
+          / /span
+        / /row
+        %hr/
+        %footer
+          %p &copy; Company 2012
+      / /.fluid-container
+    - else 
+      .container
+        .hero-unit
+          = render 'shared/flashes'
+          = yield
+        %hr/
+        %footer
+          %p &copy; Copyright.Imaginea.2012.
+      / /.container
