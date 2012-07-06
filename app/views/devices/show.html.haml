@@ -1,0 +1,46 @@
+%p#notice= notice
+%p
+  %b Serial num:
+  = @device.serial_num
+%p
+  %b Type:
+  = @device.type
+%p
+  %b Make:
+  = @device.make
+%p
+  %b Model:
+  = @device.model
+%p
+  %b Os:
+  = @device.os
+%p
+  %b Os version:
+  = @device.os_version
+%p
+  %b Environment:
+  = @device.environment
+%p
+  %b Project:
+  = @device.project
+%p
+  %b Phone num:
+  = @device.phone_num
+%p
+  %b Service provider:
+  = @device.service_provider
+%p
+  %b Mac addr:
+  = @device.mac_addr
+%p
+  %b Ip addr:
+  = @device.ip_addr
+%p
+  %b Owner:
+  = @device.owner_id
+%p
+  %b Possesser:
+  = @device.possesser_id
+= link_to 'Edit', edit_device_path(@device)
+|
+\#{link_to 'Back', devices_path}
