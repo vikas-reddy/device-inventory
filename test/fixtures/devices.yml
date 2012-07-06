@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  serial_num: MyString
+  type: 
+  make: MyString
+  model: MyString
+  os: MyString
+  os_version: MyString
+  environment: MyString
+  project: MyString
+  phone_num: MyString
+  service_provider: MyString
+  mac_addr: MyString
+  ip_addr: MyString
+  owner_id: 1
+  possesser_id: 1
+
+two:
+  serial_num: MyString
+  type: 
+  make: MyString
+  model: MyString
+  os: MyString
+  os_version: MyString
+  environment: MyString
+  project: MyString
+  phone_num: MyString
+  service_provider: MyString
+  mac_addr: MyString
+  ip_addr: MyString
+  owner_id: 1
+  possesser_id: 1

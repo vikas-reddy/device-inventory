@@ -1,0 +1,49 @@
+<h1>Listing devices</h1>
+
+<table>
+  <tr>
+    <th>Serial num</th>
+    <th>Type</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Os</th>
+    <th>Os version</th>
+    <th>Environment</th>
+    <th>Project</th>
+    <th>Phone num</th>
+    <th>Service provider</th>
+    <th>Mac addr</th>
+    <th>Ip addr</th>
+    <th>Owner</th>
+    <th>Possesser</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @devices.each do |device| %>
+  <tr>
+    <td><%= device.serial_num %></td>
+    <td><%= device.type %></td>
+    <td><%= device.make %></td>
+    <td><%= device.model %></td>
+    <td><%= device.os %></td>
+    <td><%= device.os_version %></td>
+    <td><%= device.environment %></td>
+    <td><%= device.project %></td>
+    <td><%= device.phone_num %></td>
+    <td><%= device.service_provider %></td>
+    <td><%= device.mac_addr %></td>
+    <td><%= device.ip_addr %></td>
+    <td><%= device.owner_id %></td>
+    <td><%= device.possesser_id %></td>
+    <td><%= link_to 'Show', device %></td>
+    <td><%= link_to 'Edit', edit_device_path(device) %></td>
+    <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device', new_device_path %>
