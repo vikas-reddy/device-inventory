@@ -17,6 +17,8 @@
       %th Mac addr
       %th IP
       %th Status
+      %th Assigned To
+      %th Owned By 
       %th
     - @devices.each do |device|
       %tr
@@ -33,6 +35,8 @@
         %td= device.mac_addr
         %td= device.ip_addr
         %td= device.status
+        %td= device.owner_id
+        %td= device.owner_id
         %td
           %div
             = link_to 'Show', device, :class => "btn btn-primary btn-small"
