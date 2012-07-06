@@ -1,0 +1,14 @@
+- flash.each do |name, msg|
+  - unless msg.blank?
+    - case name
+      - when :alert, :error then
+        = content_tag :div, msg, :class => "alert alert-error"
+      - when :success then
+        = content_tag :div, msg, :class => "alert alert-success"
+      - when :warning then
+        = content_tag :div, msg, :class => "alert alert-warning"
+      - when :notice then
+        = content_tag :div, msg, :class => "alert alert-info"
+      - else 
+        = content_tag :div, msg, :class => "alert alert-info"
+

@@ -1,4 +1,13 @@
 DeviceInventory::Application.routes.draw do
+
+  devise_for :users do
+    get '/signin' => 'devise/sessions#new'
+    get '/signup', :to => "devise/registrations#new"
+    get '/users/confirm', :to => 'devise/confirmations#new'
+    get '/users/reset_password', :to => 'devise/passwords#new'
+    get '/users/change_password', :to => 'devise/passwords#edit'
+  end
+
   devise_for :users
 
   resources :devices

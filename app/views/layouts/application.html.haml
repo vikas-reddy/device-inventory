@@ -18,14 +18,17 @@
           .btn-group.pull-right
             %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.icon-user
-              Username
+              = user_signed_in? ? current_user.email.sub(/@.*$/, '') : 'Guest'
               %span.caret
             %ul.dropdown-menu
-              %li
-                %a{:href => "#"} Profile
-              %li.divider
-              %li
-                %a{:href => "#"} Sign Out
+              - if user_signed_in?
+                %li
+                  %a{:href => "#"} Profile
+                %li.divider
+                %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
+              - else
+                %li
+                  = link_to 'Login', signin_path
           .nav-collapse
             %ul.nav
               %li.active
@@ -35,7 +38,7 @@
               %li
                 %a{:href => "#contact"} Contact
           / /.nav-collapse
-    .container
+    .container-fluid
       .row-fluid
         .span3
           .well.sidebar-nav
@@ -72,8 +75,7 @@
         / /span
         .span9
           .hero-unit
-            %p.notice
-            %p.alert
+            = render 'shared/flashes'
             = yield
         / /span
       / /row
