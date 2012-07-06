@@ -8,5 +8,5 @@
   %div
     = f.label :password_confirmation, "Confirm new password"
     = f.password_field :password_confirmation
-  %div= f.submit "Change my password"
+  %div= f.submit "Change my password", :class => "btn btn-large btn-primary"
 = render "devise/shared/links"
