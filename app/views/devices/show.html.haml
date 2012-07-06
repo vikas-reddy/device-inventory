@@ -2,43 +2,48 @@
   %b
   = @device.make
   = @device.model
-%legend
-%p
-  %b Serial num:
-  = @device.serial_num
-%p
-  %b Type:
-  = @device.device_type
-%p
-  %b Make:
-  = @device.make
-%p
-  %b Model:
-  = @device.model
-%p
-  %b Os:
-  = @device.os
-%p
-  %b Os version:
-  = @device.os_version
-%p
-  %b Environment:
-  = @device.environment
-%p
-  %b Project:
-  = @device.project
-%p
-  %b Phone num:
-  = @device.phone_num
-%p
-  %b Service provider:
-  = @device.service_provider
-%p
-  %b Mac addr:
-  = @device.mac_addr
-%p
-  %b Ip addr:
-  = @device.ip_addr
-= link_to 'Edit', edit_device_path(@device)
-|
-\#{link_to 'Back', devices_path}
+  %legend
+  %h5
+    = link_to 'Edit', edit_device_path(@device)
+    |
+    \#{link_to 'Back', devices_path}
+%table{	:class => "table"}
+  %tr
+    %td
+      %b Serial num:
+      = @device.serial_num
+    %td
+      %b Type:
+      = @device.device_type
+    %td
+      %b Make:
+      = @device.make
+    %td
+      %b Model:
+      = @device.model
+  %tr
+    %td
+      %b Os:
+      = @device.os
+    %td
+      %b Os version:
+      = @device.os_version
+    %td
+      %b Environment:
+      = @device.environment
+    %td
+      %b Project:
+      = @device.project
+  %tr
+    %td
+      %b Phone num:
+      = @device.phone_num
+    %td
+      %b Service provider:
+      = @device.service_provider
+    %td
+      %b Mac addr:
+      = @device.mac_addr
+    %td
+      %b Ip addr:
+      = @device.ip_addr
