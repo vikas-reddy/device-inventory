@@ -58,6 +58,6 @@
   .control-group.field
     = f.label :status, class: 'control-label'
     .controls
-      = f.text_field :status
+      = select_tag(:status, options_for_select(['Available', 'In Use', 'Not Available']))
   .actions
     = f.submit :class => "btn btn-primary btn-large"
