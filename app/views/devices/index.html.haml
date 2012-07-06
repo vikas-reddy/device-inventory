@@ -1,0 +1,41 @@
+%h1 Listing devices
+%table
+  %tr
+    %th Serial num
+    %th Type
+    %th Make
+    %th Model
+    %th Os
+    %th Os version
+    %th Environment
+    %th Project
+    %th Phone num
+    %th Service provider
+    %th Mac addr
+    %th Ip addr
+    %th Owner
+    %th Possesser
+    %th
+    %th
+    %th
+  - @devices.each do |device|
+    %tr
+      %td= device.serial_num
+      %td= device.type
+      %td= device.make
+      %td= device.model
+      %td= device.os
+      %td= device.os_version
+      %td= device.environment
+      %td= device.project
+      %td= device.phone_num
+      %td= device.service_provider
+      %td= device.mac_addr
+      %td= device.ip_addr
+      %td= device.owner_id
+      %td= device.possesser_id
+      %td= link_to 'Show', device
+      %td= link_to 'Edit', edit_device_path(device)
+      %td= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Device', new_device_path
