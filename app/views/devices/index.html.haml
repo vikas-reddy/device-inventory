@@ -1,27 +1,11 @@
 %h2 Listing devices
 %legend
 - if @devices.empty?
-  = render 'no_devices'
+  .no_device
+    There are no devices in the database at the moment. Go to
+    = link_to 'create page', new_device_path
+    to add a device.
 - else
-  %table.table.table-striped.table-bordered{:width => "100%"}
-    %thead
-      %tr
-        %th Model
-        %th Type
-        %th OS
-        %th Project
-        %th Status
-        %th Assigned To
-        %th Owned By 
-    - @devices.each do |device|
-      %tbody
-        %tr.clickable{'data-url' => device_path(device)}
-          %td= "#{device.make} #{device.model}"
-          %td= device.device_type
-          %td= "#{device.os} #{device.os_version}"
-          %td= device.project
-          %td= device.status
-          %td= device.owner_id
-          %td= device.owner_id
+  = render 'devices/list'
 %br/
-= link_to 'New Device', new_device_path, class: 'btn btn-medium'
+= link_to 'New Device', new_device_path, class: 'btn'

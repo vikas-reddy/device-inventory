@@ -1,0 +1,20 @@
+%table.table.table-striped.table-bordered{:width => "100%"}
+  %thead
+    %tr
+      %th Model
+      %th Type
+      %th OS
+      %th Project
+      %th Status
+      %th Assigned To
+      %th Owned By 
+  - @devices.each do |device|
+    %tbody
+      %tr.clickable{'data-url' => device_path(device)}
+        %td= "#{device.make} #{device.model}"
+        %td= device.device_type
+        %td= "#{device.os} #{device.os_version}"
+        %td= device.project
+        %td= device.status
+        %td= device.owner_id
+        %td= device.owner_id

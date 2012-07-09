@@ -1,0 +1,9 @@
+%h2 Search Results
+%legend
+- if @devices.empty?
+  .no_device
+    There are no devices matching your search criteria in the database at the moment.
+- else
+  = render 'devices/list'
+%br/
+= link_to 'All Devices', devices_path, class: 'btn'

@@ -17,7 +17,10 @@ class DevicesController < ApplicationController
   def search
     @devices = Device.search(params[:q])
 
-    render action: :index
+    respond_to do |format|
+      format.html # search.html.erb
+      format.json { render json: @devices }
+    end
   end
 
   # GET /devices/1
