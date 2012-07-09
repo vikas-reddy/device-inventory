@@ -1,63 +1,81 @@
 = form_for(@device, html: {class: 'form-horizontal new_device well'}) do |f|
-  - if @device.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@device.errors.count, "error")
-        prohibited this device from being saved:
-      %ul
-        - @device.errors.full_messages.each do |msg|
-          %li= msg
-  .control-group.field
+  .control-group{class: @device.errors[:serial_num].empty? ? '' : 'error'}
     = f.label :serial_num, 'Serial Number', class: 'control-label'
     .controls
       = f.text_field :serial_num
-  .control-group.field
-    = f.label :type, class: 'control-label'
+      %span.help-inline
+        = @device.errors[:serial_num].join(", ")
+  .control-group{class: @device.errors[:device_type].empty? ? '' : 'error'}
+    = f.label :device_type, class: 'control-label'
     .controls
-      = f.text_field :device_type
-  .control-group.field
+      = f.select :device_type, Device::DeviceTypes
+      %span.help-inline
+        = @device.errors[:device_type].join(", ")
+  .control-group{class: @device.errors[:make].empty? ? '' : 'error'}
     = f.label :make, class: 'control-label'
     .controls
       = f.text_field :make
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:make].join(", ")
+  .control-group{class: @device.errors[:model].empty? ? '' : 'error'}
     = f.label :model, class: 'control-label'
     .controls
       = f.text_field :model
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:model].join(", ")
+  .control-group{class: @device.errors[:os].empty? ? '' : 'error'}
     = f.label :os, 'OS', class: 'control-label'
     .controls
       = f.text_field :os
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:os].join(", ")
+  .control-group{class: @device.errors[:os_version].empty? ? '' : 'error'}
     = f.label :os_version, 'OS Version', class: 'control-label'
     .controls
       = f.text_field :os_version
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:os_version].join(", ")
+  .control-group{class: @device.errors[:environment].empty? ? '' : 'error'}
     = f.label :environment, class: 'control-label'
     .controls
       = f.text_field :environment
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:environment].join(", ")
+  .control-group{class: @device.errors[:project].empty? ? '' : 'error'}
     = f.label :project, class: 'control-label'
     .controls
       = f.text_field :project
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:project].join(", ")
+  .control-group{class: @device.errors[:phone_num].empty? ? '' : 'error'}
     = f.label :phone_num, 'Phone Number', class: 'control-label'
     .controls
       = f.text_field :phone_num
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:phone_num].join(", ")
+  .control-group{class: @device.errors[:service_provider].empty? ? '' : 'error'}
     = f.label :service_provider, 'Service Provider', class: 'control-label'
     .controls
       = f.text_field :service_provider
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:service_provider].join(", ")
+  .control-group{class: @device.errors[:mac_addr].empty? ? '' : 'error'}
     = f.label :mac_addr, 'MAC Address', class: 'control-label'
     .controls
       = f.text_field :mac_addr
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:mac_addr].join(", ")
+  .control-group{class: @device.errors[:ip_addr].empty? ? '' : 'error'}
     = f.label :ip_addr, 'IP Address', class: 'control-label'
     .controls
       = f.text_field :ip_addr
-  .control-group.field
+      %span.help-inline
+        = @device.errors[:ip_addr].join(", ")
+  .control-group{class: @device.errors[:status].empty? ? '' : 'error'}
     = f.label :status, class: 'control-label'
     .controls
       = select_tag(:status, options_for_select(['Available', 'In Use', 'Not Available']))
+      %span.help-inline
+        = @device.errors[:status].join(", ")
   .actions
     = f.submit :class => "btn btn-primary btn-large"

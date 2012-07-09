@@ -60,6 +60,7 @@ class DevicesController < ApplicationController
         format.html { redirect_to @device, notice: 'Device was successfully created.' }
         format.json { render json: @device, status: :created, location: @device }
       else
+        flash.now[:error] = "Some errors prevented the device from saving"
         format.html { render action: "new" }
         format.json { render json: @device.errors, status: :unprocessable_entity }
       end
@@ -76,6 +77,7 @@ class DevicesController < ApplicationController
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
         format.json { head :no_content }
       else
+        flash.now[:error] = "Some errors prevented the data from updating"
         format.html { render action: "edit" }
         format.json { render json: @device.errors, status: :unprocessable_entity }
       end
