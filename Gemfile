@@ -34,6 +34,8 @@ gem 'paperclip'
 gem "aws-s3"
 gem "aws-sdk"
 
+#Export Excel
+gem 'spreadsheet'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

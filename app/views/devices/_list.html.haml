@@ -1,6 +1,8 @@
 %table.table.table-striped.table-bordered{:width => "100%"}
   %thead
     %tr
+      %td=link_to 'Export', export_devices_path(:format => :xls)
+    %tr
       %th Model
       %th Type
       %th OS
