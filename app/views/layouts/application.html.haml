@@ -36,28 +36,11 @@
               %li
                 %a{:href => "#contact"} Contact
           / /.nav-collapse
-    - if user_signed_in?
-      .container-fluid
-        .row-fluid
-          .span2
-            = render 'shared/sidebar'
-          / /span
-          .span10
-            .hero-unit
-              = render 'shared/flashes'
-              = yield
-          / /span
-        / /row
-        %hr/
-        %footer
-          %p &copy; Copyright.Imaginea.2012.
-      / /.fluid-container
-    - else 
-      .container
-        .hero-unit
-          = render 'shared/flashes'
-          = yield
-        %hr/
-        %footer
-          %p &copy; Copyright.Imaginea.2012.
-      / /.container
+    .container
+      .hero-unit
+        = render 'shared/flashes'
+        = yield
+      %hr/
+      %footer
+        %p &copy; Copyright.Imaginea.2012.
+    / /.container
