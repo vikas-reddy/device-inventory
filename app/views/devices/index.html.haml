@@ -1,5 +1,13 @@
-%h2 Listing devices
+.row-fluid
+  .pull-left
+    %h2 Listing Devices
+  .pull-right
+    %a.btn.btn-primary{href: new_device_path}
+      %i.icon-plus.icon-white
+      Add Device
+
 %legend
+
 - if @devices.empty?
   .no_device
     There are no devices in the database at the moment. Go to
@@ -7,5 +15,3 @@
     to add a device.
 - else
   = render 'devices/list'
-%br/
-= link_to 'New Device', new_device_path, class: 'btn'

@@ -3,10 +3,14 @@
   = @device.make
   = @device.model
   %legend
-  %h5
+
+%p
+  .pull-left
     = link_to 'Edit', edit_device_path(@device), class: 'btn btn-medium'
-    |
-    \#{link_to 'Back', devices_path, class: 'btn btn-medium'}
+    = link_to 'Back', devices_path, class: 'btn btn-medium'
+  .pull-right
+    = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-warning'
+
 %table{	:class => "table"}
   %tr
     %td
