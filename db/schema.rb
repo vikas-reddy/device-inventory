@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706102907) do
+ActiveRecord::Schema.define(:version => 20120709051343) do
 
   create_table "devices", :force => true do |t|
     t.string   "serial_num"
@@ -28,9 +28,12 @@ ActiveRecord::Schema.define(:version => 20120706102907) do
     t.string   "ip_addr"
     t.integer  "owner_id"
     t.integer  "possesser_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "status"
+    t.string   "device_photo_file_name"
+    t.string   "device_photo_content_type"
+    t.integer  "device_photo_file_size"
   end
 
   create_table "users", :force => true do |t|

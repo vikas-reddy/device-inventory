@@ -1,4 +1,4 @@
-= form_for(@device, html: {class: 'form-horizontal new_device well'}) do |f|
+= form_for(@device, html: {class: 'form-horizontal new_device well', multipart: true}) do |f|
   .control-group{class: @device.errors[:serial_num].empty? ? '' : 'error'}
     = f.label :serial_num, 'Serial Number', class: 'control-label'
     .controls
@@ -23,6 +23,12 @@
       = f.text_field :model
       %span.help-inline
         = @device.errors[:model].join(", ")
+  .control-group{class: @device.errors[:device_photo].empty? ? '' : 'error'}
+    = f.label :Photo, 'OS', class: 'control-label'
+    .controls
+      = f.file_field :device_photo
+      %span.help-inline
+        = @device.errors[:device_photo].join(", ")
   .control-group{class: @device.errors[:os].empty? ? '' : 'error'}
     = f.label :os, 'OS', class: 'control-label'
     .controls
