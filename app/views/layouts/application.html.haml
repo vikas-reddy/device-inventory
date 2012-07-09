@@ -28,13 +28,10 @@
                 %li
                   = link_to 'Login', signin_path
           .nav-collapse
-            %ul.nav
-              %li.active
-                %a{:href => "#"} Home
+            %ul.nav.pull-right
               %li
-                %a{:href => "#about"} About
-              %li
-                %a{:href => "#contact"} Contact
+                %form.navbar-form.pull-right{action: search_devices_path}
+                  %input.span3{type: :text, name: 'q', placeholder: 'Search Devices'}
           / /.nav-collapse
     .container
       .hero-unit

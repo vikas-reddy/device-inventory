@@ -12,6 +12,14 @@ class DevicesController < ApplicationController
     end
   end
 
+  # GET /devices/search
+  # GET /devices/search.json
+  def search
+    @devices = Device.search(params[:q])
+
+    render action: :index
+  end
+
   # GET /devices/1
   # GET /devices/1.json
   def show
