@@ -3,45 +3,25 @@
 - if @devices.empty?
   = render 'no_devices'
 - else
-  %table{:width => "100%", :class => "table table-striped table-bordered table-condensed"}
-    %tr
-      %th Serial
-      %th Type
-      %th Make
-      %th Model
-      %th OS
-      %th Version
-      %th Environment
-      %th Project
-      %th Phone
-      %th Provider
-      %th Mac addr
-      %th IP
-      %th Status
-      %th Assigned To
-      %th Owned By 
-      %th
-    - @devices.each do |device|
+  %table.table.table-striped.table-bordered{:width => "100%"}
+    %thead
       %tr
-        %td= device.serial_num
-        %td= device.device_type
-        %td= device.make
-        %td= device.model
-        %td= device.os
-        %td= device.os_version
-        %td= device.environment
-        %td= device.project
-        %td= device.phone_num
-        %td= device.service_provider
-        %td= device.mac_addr
-        %td= device.ip_addr
-        %td= device.status
-        %td= device.owner_id
-        %td= device.owner_id
-        %td
-          %div
-            = link_to 'Show', device, :class => "btn btn-primary btn-small"
-            = link_to 'Edit', edit_device_path(device), :class => "btn btn-success btn-small"
-            = link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small"
+        %th Model
+        %th Type
+        %th OS
+        %th Project
+        %th Status
+        %th Assigned To
+        %th Owned By 
+    - @devices.each do |device|
+      %tbody
+        %tr.clickable{'data-url' => device_path(device)}
+          %td= "#{device.make} #{device.model}"
+          %td= device.device_type
+          %td= "#{device.os} #{device.os_version}"
+          %td= device.project
+          %td= device.status
+          %td= device.owner_id
+          %td= device.owner_id
 %br/
 = link_to 'New Device', new_device_path, class: 'btn btn-medium'
