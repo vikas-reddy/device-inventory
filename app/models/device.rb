@@ -4,6 +4,7 @@ class Device < ActiveRecord::Base
   belongs_to :user
 
   def self.search(query)
-    self.where(["make LIKE ? OR model LIKE ?", '%' + query + '%', '%' + query + '%'])
+    q = "%#{query}%"
+    self.where(["make LIKE ? OR model LIKE ? OR os LIKE ? OR os_version LIKE ? OR project LIKE ?", q, q, q, q, q])
   end
 end

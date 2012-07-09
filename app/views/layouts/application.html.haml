@@ -28,6 +28,8 @@
                 %li
                   = link_to 'Login', signin_path
           .nav-collapse
+            %ul.nav.pull-left
+              %li= link_to 'Home', root_path
             %ul.nav.pull-right
               %li
                 %form.navbar-form.pull-right{action: search_devices_path}
