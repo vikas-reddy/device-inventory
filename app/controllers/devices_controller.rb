@@ -3,10 +3,11 @@ class DevicesController < ApplicationController
 
   # GET /devices
   # GET /devices.json
+  #
   def index
     @devices = Device.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.erb 
       format.json { render json: @devices }
     end
   end
@@ -19,9 +20,10 @@ class DevicesController < ApplicationController
       format.xls {
         devices = Spreadsheet::Workbook.new
         list = devices.create_worksheet :name => 'List of cliets'
-        list.row(0).concat %w{Make Model SerialNumber}
+        list.row(0).concat %w{Make Model SerialNumber Os OsVersion Environment Project Status Provider Phone MACID IPADDR AssignedTo} 
         @devices.each_with_index { |device, i|
-          list.row(i+1).push device.make,device.model,device.serial_num
+          list.row(i+1).push device.make,device.model,device.serial_num,device.os,device.os_version,device.environment,device.project,device.status,
+            device.service_provider,device.phone_num,device.mac_addr,device.ip_addr,
         }
         header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
         list.row(0).default_format = header_format

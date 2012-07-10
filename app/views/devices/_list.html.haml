@@ -1,7 +1,5 @@
-%table.table.table-striped.table-bordered{:width => "100%"}
+%table#device-list.table.table-striped.table-bordered
   %thead
-    %tr
-      %td=link_to 'Export', export_devices_path(:format => :xls)
     %tr
       %th Model
       %th Type
@@ -11,8 +9,8 @@
       %th Assigned To
       %th Owned By 
       %th
-  - @devices.each do |device|
-    %tbody
+  %tbody
+    - @devices.each do |device|
       %tr.clickable{'data-url' => device_path(device)}
         %td= "#{device.make} #{device.model}"
         %td= device.device_type
@@ -22,3 +20,19 @@
         %td= device.owner_id
         %td= device.owner_id
         %td= link_to 'Show', device_path(device), class: 'btn'
+  %tfoot
+    %tr
+      %th
+        %input.search_init{:name => "search_make", :type => "text", :value => "Search Make"}/
+      %th
+        %input.search_init{:name => "search_type", :type => "text", :value => "Search Type"}/
+      %th
+        %input.search_init{:name => "search_os", :type => "text", :value => "Search OS"}/
+      %th
+        %input.search_init{:name => "search_project", :type => "text", :value => "Search Project"}/
+      %th
+        %input.search_init{:name => "search_status", :type => "text", :value => "Search Status"}/
+      %th
+      %th
+      %th
+=link_to 'Export', export_devices_path(:format => :xls)
