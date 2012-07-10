@@ -27,3 +27,22 @@
 .field_with_errors {
   display: inline;
 }
+
+.img-placeholder {
+  border: 1px solid #dddddd;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.small {
+  width: 250px;
+  height: 250px;
+}
+
+.thumb {
+  width: 100px;
+  height: 100px;
+}
+.field {
+  line-height: 24px;
+}

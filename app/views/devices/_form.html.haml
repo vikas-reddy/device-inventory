@@ -1,4 +1,4 @@
-= form_for(@device, html: {id: 'device-form', class: 'form-horizontal new_device well', multipart: true}) do |f|
+= form_for(@device, html: {id: 'device-form', class: 'form-horizontal new_device', multipart: true}) do |f|
   = device_form_entries(f)
 
   %h3= accessories_heading(@device)

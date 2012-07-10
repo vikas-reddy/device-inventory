@@ -1,68 +1,52 @@
-%h2
-  %b
-  = @device.make
-  = @device.model
-  %legend
+.pager
+  %li.previous
+    = link_to '<< Devices List', devices_path
 
-%p
-  .pull-left
-    = link_to 'Edit', edit_device_path(@device), class: 'btn btn-medium'
-    = link_to 'Back', devices_path, class: 'btn btn-medium'
-  .pull-right
-    = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-warning'
-
-%table{	:class => "table"}
-  %tr
-    %td
-      %b Serial num:
-      = @device.serial_num
-    %td
-      %b Type:
-      = @device.device_type
-    %td
-      %b Make:
-      = @device.make
-    %td
-      %b Model:
-      = @device.model
-    %td
-      %b Device Photo:
-      = image_tag @device.device_photo.url(:thumb) 
-  %tr
-    %td
-      %b Os:
-      = @device.os
-    %td
-      %b Os version:
-      = @device.os_version
-    %td
-      %b Environment:
-      = @device.environment
-    %td
-      %b Project:
-      = @device.project
-  %tr
-    %td
-      %b Phone num:
-      = @device.phone_num
-    %td
-      %b Service provider:
-      = @device.service_provider
-    %td
-      %b Mac addr:
-      = @device.mac_addr
-    %td
-      %b Ip addr:
-      = @device.ip_addr
-  %tr
-    %td
-      %b Status:
-      = @device.status
-    %td
-      %b Assigned To:
-      = @device.owner_id
-    %td
-      %b Owned By:
-      = @device.owner_id
+.well
+  %legend.row-fluid
+    .pull-left
+      %h2= device_name(@device)
+    .pull-right
+      = link_to 'Edit', edit_device_path(@device), class: 'btn btn-mini'
+      = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-warning'
+  .row-fluid
+    .span4
+      .field
+        %b OS:
+        = "#{@device.os} #{@device.os_version}"
+      .field
+        %b Project:
+        = "#{@device.project}"
+      .field
+        %b Environment:
+        = "#{@device.environment}"
+      .field
+        %b Status:
+        = "#{@device.status}"
+      .field
+        %b Owner:
+        = "#{@device.owner_id}"
+      .field
+        %b Possesser:
+        = "#{@device.possesser_id}"
+    .span4
+      .field
+        %b Mac Address:
+        = "#{@device.mac_addr}"
+      .field
+        %b Network:
+        = "#{@device.service_provider} (#{@device.phone_num})"
+      .field
+        %b IP:
+        = "#{@device.ip_addr}"
+      .field
+        %b Serial:
+        = "#{@device.serial_num}"
+    .span4
+      .img-placeholder.small
+        = image_tag @device.device_photo.url(:small), height: 250, width: 100
 
 = render 'accessories/list'
+
+%h3 Events
+No events yet

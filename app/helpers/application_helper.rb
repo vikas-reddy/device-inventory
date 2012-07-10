@@ -7,4 +7,8 @@ module ApplicationHelper
       "Accessories"
     end
   end
+
+  def device_name(device)
+    "#{device.make} #{device.model}"
+  end
 end

@@ -1,5 +1,15 @@
-%h2 Editing device
-= link_to 'Show', @device, class: 'btn btn-medium'
-|
-\#{link_to 'Back', devices_path, class: 'btn btn-medium'}
-= render 'form'
+.pager
+  %li.previous
+    = link_to '<< Devices List', devices_path
+
+.well
+  %legend.row-fluid
+    .pull-left
+      %h2
+        Editing
+        = device_name(@device)
+    .pull-right
+      = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-medium btn-warning'
+
+  .row-fluid
+    = render 'form'

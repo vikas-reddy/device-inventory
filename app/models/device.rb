@@ -4,7 +4,7 @@ class Device < ActiveRecord::Base
 
   # Associations
   belongs_to :user
-  has_many :accessories
+  has_many :accessories, dependent: :destroy
   accepts_nested_attributes_for :accessories, allow_destroy: true
 
   # Validations
@@ -16,14 +16,14 @@ class Device < ActiveRecord::Base
   DeviceTypes = %w(Smartphone Tablet)
   Statuses = %w(Available In-Use Under-Repair)
 
+  #paperclip
+  has_attached_file :device_photo, :styles => {:thumb=> "100x100#", :small  => "250x250>" },
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :path => "/:style/:id/:filename"
+
   def self.search(query)
     q = "%#{query}%"
     self.where(["make LIKE ? OR model LIKE ? OR os LIKE ? OR os_version LIKE ? OR project LIKE ?", q, q, q, q, q])
   end
-  
-  #paperclip
-  has_attached_file :device_photo, :styles => {:thumb=> "100x100#", :small  => "400x400>" },
-                    :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => "/:style/:id/:filename"
 end
