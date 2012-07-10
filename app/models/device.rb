@@ -5,6 +5,7 @@ class Device < ActiveRecord::Base
   # Associations
   belongs_to :user
   has_many :accessories
+  accepts_nested_attributes_for :accessories
 
   # Validations
   validates_presence_of :environment, :ip_addr, :make, :model, :os, :os_version, :project, :serial_num
@@ -13,6 +14,7 @@ class Device < ActiveRecord::Base
 
   # Constants
   DeviceTypes = %w(Smartphone Tablet)
+  Statuses = %w(Available In-Use Under-Repair)
 
   def self.search(query)
     q = "%#{query}%"
