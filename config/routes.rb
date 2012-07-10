@@ -10,9 +10,11 @@ DeviceInventory::Application.routes.draw do
 
   devise_for :users
 
+
   resources :devices do
     collection do
       get :search
+      get :export
     end
 
     resources :accessories

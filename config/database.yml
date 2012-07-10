@@ -14,8 +14,8 @@ development:
   reconnect: false
   database: device_inventory_development
   pool: 5
-  username: vikas
-  password:
+  username: root
+  password: pramati
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and

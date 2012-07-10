@@ -1,0 +1,14 @@
+development:
+  bucket: find-a-ride-dev
+  access_key_id: "AKIAJJAKD5Y4YSHCYOHA"
+  secret_access_key: "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"
+
+test:
+  bucket: find-a-ride-test
+  access_key_id: "AKIAJJAKD5Y4YSHCYOHA"
+  secret_access_key: "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"
+
+production:
+  bucket: find-a-ride-prod
+  access_key_id: "AKIAJJAKD5Y4YSHCYOHA"
+  secret_access_key: "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"

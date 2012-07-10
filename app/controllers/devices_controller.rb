@@ -5,12 +5,35 @@ class DevicesController < ApplicationController
   # GET /devices.json
   def index
     @devices = Device.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @devices }
     end
   end
+
+  def export
+    @devices = Device.all
+    require 'spreadsheet'
+    respond_to do |format|
+      format.pdf
+      format.xls {
+        devices = Spreadsheet::Workbook.new
+        list = devices.create_worksheet :name => 'List of cliets'
+        list.row(0).concat %w{Make Model SerialNumber}
+        @devices.each_with_index { |device, i|
+          list.row(i+1).push device.make,device.model,device.serial_num
+        }
+        header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
+        list.row(0).default_format = header_format
+        #output to blob object
+        blob = StringIO.new('')
+        devices.write(blob)
+        #respond with blob object as a file
+        send_data(blob.string, :type => "application/ms-excel", :filename => "device_list.xls")
+      }
+    end
+  end
+
 
   # GET /devices/search
   # GET /devices/search.json

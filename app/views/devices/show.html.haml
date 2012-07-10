@@ -25,6 +25,9 @@
     %td
       %b Model:
       = @device.model
+    %td
+      %b Device Photo:
+      = image_tag @device.device_photo.url(:thumb) 
   %tr
     %td
       %b Os:

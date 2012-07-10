@@ -37,9 +37,12 @@ ActiveRecord::Schema.define(:version => 20120709102116) do
     t.string   "ip_addr"
     t.integer  "owner_id"
     t.integer  "possesser_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "status"
+    t.string   "device_photo_file_name"
+    t.string   "device_photo_content_type"
+    t.integer  "device_photo_file_size"
   end
 
   create_table "users", :force => true do |t|
