@@ -2,6 +2,6 @@
   = f.select  :accessory_type, Accessory::AccessoryTypes, placeholder: 'Accessory Type'
   = f.text_field :manufacturer, placeholder: 'Manufacturer'
   = f.text_field :description, placeholder: 'Comments'
-  .pull-right
-    = f.check_box '_destroy', rel: 'tooltip', title: 'Mark for deletion'
-    %span.label.label-warning Remove
+  .pull-right{rel: 'tooltip', title: 'Mark for deletion'}
+    = f.check_box '_destroy'
+    = f.label '_destroy', 'Remove', class: 'btn btn-mini btn-warning'

@@ -1,7 +1,7 @@
 = form_for(@device, html: {id: 'device-form', class: 'form-horizontal new_device well', multipart: true}) do |f|
   = device_form_entries(f)
 
-  %h3 Accessories
+  %h3= accessories_heading(@device)
   = f.fields_for :accessories do |accessories_fields|
     = render 'accessories/form', :f => accessories_fields
 
