@@ -22,17 +22,17 @@
         %td= link_to 'Show', device_path(device), class: 'btn'
   %tfoot
     %tr
-      %th
+      %td
         %input.search_init{:name => "search_make", :type => "text", :value => "Search Make"}/
-      %th
+      %td
         %input.search_init{:name => "search_type", :type => "text", :value => "Search Type"}/
-      %th
+      %td
         %input.search_init{:name => "search_os", :type => "text", :value => "Search OS"}/
-      %th
+      %td
         %input.search_init{:name => "search_project", :type => "text", :value => "Search Project"}/
-      %th
+      %td
         %input.search_init{:name => "search_status", :type => "text", :value => "Search Status"}/
-      %th
-      %th
-      %th
+      %td
+      %td
+      %td
 =link_to 'Export', export_devices_path(:format => :xls)

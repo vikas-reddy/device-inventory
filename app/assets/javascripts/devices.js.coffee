@@ -5,25 +5,30 @@
 asInitVals = new Array()
 $(document).ready (e) ->
   
-      oTable = $("#device-list").dataTable(oLanguage:
-        sSearch: "Search all columns:"
-      )
-      $("tfoot input").keyup ->
-        oTable.fnFilter @value, $("tfoot input").index(this)
+  # Device index and search results pages
+  if($('#device-list').length > 0)
 
-      $("tfoot input").each (i) ->
-        asInitVals[i] = @value
+    oTable = $("#device-list").dataTable(oLanguage:
+      sSearch: "Search all columns:"
+    )
+    $("tfoot input").keyup ->
+      oTable.fnFilter @value, $("tfoot input").index(this)
 
-      $("tfoot input").focus ->
-        if @className is "search_init"
-          @className = ""
-          @value = ""
+    $("tfoot input").each (i) ->
+      asInitVals[i] = @value
 
-      $("tfoot input").blur (i) ->
-        if @value is ""
-          @className = "search_init"
-          @value = asInitVals[$("tfoot input").index(this)]
+    $("tfoot input").focus ->
+      if @className is "search_init"
+        @className = ""
+        @value = ""
 
+    $("tfoot input").blur (i) ->
+      if @value is ""
+        @className = "search_init"
+        @value = asInitVals[$("tfoot input").index(this)]
+
+
+  # Device forms in edit and new pages
   if($('#device-form').length > 0)
 
     window.tmplIndex = -1

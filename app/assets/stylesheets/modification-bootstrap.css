@@ -1,8 +1,8 @@
 .hero-unit {
   padding: 30px;
 }
-#device-list .search_init,
-#device-list .search_init:focus {
+#device-list tfoot input,
+#device-list tfoot input:focus {
   width: 85px;
 }
 
