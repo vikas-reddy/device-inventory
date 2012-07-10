@@ -14,6 +14,8 @@ DeviceInventory::Application.routes.draw do
     collection do
       get :search
     end
+
+    resources :accessories
   end
 
   resources :users

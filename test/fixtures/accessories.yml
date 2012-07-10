@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  accessory_type: MyString
+  description: MyText
+  manufacturer: MyString
+
+two:
+  accessory_type: MyString
+  description: MyText
+  manufacturer: MyString

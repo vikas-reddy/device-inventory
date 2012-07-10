@@ -1,0 +1,30 @@
+%h3 Accessories
+- if @device.accessories.empty?
+  No accessories for this device
+- else
+  %table.table.table-striped.table-condensed
+    %thead
+      %tr
+        %th Accessory Type
+        %th Manufacturer
+        %th Comments
+        %th
+    %tbody
+      - @device.accessories.each do |accessory|
+        %tr{class: "accessory-row", id: "accessory-row-#{accessory.id}"}
+          %td= accessory.accessory_type
+          %td= accessory.manufacturer
+          %td= accessory.description
+          %td
+            %a{:class => 'remove-accessory', :id => "remove-accessory-#{accessory.id}", 'data-confirm' => "Remove this #{accessory.accessory_type}?", :href => device_accessory_path(@device, accessory)}
+              %i.icon-remove
+
+%p.center
+  %a.btn.btn-primary#add-accessory{href: '#'} Add Accessory
+
+= form_for [@device, @accessory], html: {id: 'new-accessory', class: 'hide well form-inline'} do |f|
+  = f.select :accessory_type, Accessory::AccessoryTypes
+  = f.text_field :manufacturer, placeholder: 'Manufacturer'
+  = f.text_field :description, placeholder: 'Comments'
+  = f.submit 'Add', class: 'btn-primary btn'
+  %button.btn.cancel Cancel

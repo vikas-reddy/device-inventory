@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706102907) do
+ActiveRecord::Schema.define(:version => 20120709102116) do
+
+  create_table "accessories", :force => true do |t|
+    t.string   "accessory_type"
+    t.text     "description"
+    t.string   "manufacturer"
+    t.integer  "device_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "devices", :force => true do |t|
     t.string   "serial_num"

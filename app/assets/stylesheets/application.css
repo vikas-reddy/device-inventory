@@ -19,3 +19,11 @@
 .center {
   text-align: center;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.field_with_errors {
+  display: inline;
+}
