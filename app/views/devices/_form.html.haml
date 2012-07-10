@@ -1,4 +1,16 @@
-= form_for(@device, html: {class: 'form-horizontal new_device well', multipart: true}) do |f|
+= form_for(@device, html: {id: 'device-form', class: 'form-horizontal new_device well', multipart: true}) do |f|
   = device_form_entries(f)
+
+  %h3 Accessories
+  = f.fields_for :accessories do |accessories_fields|
+    = render 'accessories/form', :f => accessories_fields
+
+  = render 'accessories/form_template'
+
+  .well#add-accessory-container.center
+    %a.btn.btn-primary#add-accessory
+      %i.icon-plus.icon-white
+      Add Accessory
+
   .actions
     = f.submit :class => "btn btn-primary btn-large"

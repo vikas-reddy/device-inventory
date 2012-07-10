@@ -4,25 +4,23 @@
 
 $(document).ready (e) ->
 
-  # Add Accessory
-  $('#add-accessory').on 'click', (e) ->
-    e.preventDefault()
-    $('#add-accessory').hide()
-    $('#new-accessory').show()
+  if($('#device-form'))
 
-  $('#new-accessory .cancel').on 'click', (e) ->
-    e.preventDefault()
-    $('#add-accessory').show()
-    $('#new-accessory').hide()
+    window.tmplIndex = -1
 
-  $('.remove-accessory').on 'click', (e) ->
-    e.preventDefault()
-    accId = $(this).attr('id').match(/-(\d+)$/)[1]
+    $('[rel="tooltip"]', '#device-form').tooltip()
 
-    $.ajax
-      method: 'delete'
-      url: $(this).attr('href')
-      complete: ->
-        $('accessory-row-' + accId).remove()
-        false
+    # Add Accessory
+    $('#add-accessory', '#device-form').on 'click', (e) ->
+      e.preventDefault()
 
+      form = $('#new-accessory-template').tmpl({index: window.tmplIndex--})
+      $('#add-accessory-container').before(form)
+      return false
+
+    # Remove Accessory
+    $('#device-form').on 'click', '.remove-accessory', (e) ->
+      e.preventDefault()
+
+      $(this).closest('.accessory-form-inline').remove()
+      return false

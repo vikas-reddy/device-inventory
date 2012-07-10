@@ -1,0 +1,8 @@
+%script#new-accessory-template{:type => "text/x-jquery-tmpl"}
+  .well.accessory-form-inline
+    = select_tag  %|device[accessories_attributes][${index}][accessory_type]|, options_for_select(Accessory::AccessoryTypes), id: %|device_accessories_attributes_${index}_accessory_type|, placeholder: 'Accessory Type'
+    = text_field_tag %|device[accessories_attributes][${index}][manufacturer]|, '', id: %|device_accessories_attributes_${index}_manufacturer|, placeholder: 'Manufacturer'
+    = text_field_tag %|device[accessories_attributes][${index}][description]|, '', id: %|device_accessories_attributes_${index}_description|, placeholder: 'Comments'
+    .pull-right
+      %a.remove-accessory{href: '#'}
+        %i.icon-remove

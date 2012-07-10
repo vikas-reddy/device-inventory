@@ -1,11 +1,11 @@
 class Device < ActiveRecord::Base
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :owner_id, :phone_num, :possesser_id, :project, :serial_num, :service_provider, :device_type, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type
+  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :owner_id, :phone_num, :possesser_id, :project, :serial_num, :service_provider, :device_type, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes
 
   # Associations
   belongs_to :user
   has_many :accessories
-  accepts_nested_attributes_for :accessories
+  accepts_nested_attributes_for :accessories, allow_destroy: true
 
   # Validations
   validates_presence_of :environment, :ip_addr, :make, :model, :os, :os_version, :project, :serial_num

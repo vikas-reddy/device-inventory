@@ -72,6 +72,11 @@ class DevicesController < ApplicationController
   # GET /devices/1/edit
   def edit
     @device = Device.find(params[:id])
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.json { render json: @device }
+    end
   end
 
   # POST /devices
