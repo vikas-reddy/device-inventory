@@ -1,6 +1,107 @@
 = form_for(@device, html: {id: 'device-form', class: 'form-horizontal new_device', multipart: true}) do |f|
-  = device_form_entries(f)
+  .row-fluid
+    .span6
+      .control-group{class: @device.errors[:device_type].empty? ? '' : 'error'}
+        = f.label :device_type, 'Device Type', class: 'control-label'
+        .controls
+          = f.select :device_type, Device::DeviceTypes
+          %span.help-block
+            = @device.errors[:device_type].join(", ")
+      .control-group{class: @device.errors[:make].empty? ? '' : 'error'}
+        = f.label :make, class: 'control-label'
+        .controls
+          = f.text_field :make, placeholder: 'Manufacturer of the device'
+          %span.help-block
+            = @device.errors[:make].join(", ")
+      .control-group{class: @device.errors[:model].empty? ? '' : 'error'}
+        = f.label :model, class: 'control-label'
+        .controls
+          = f.text_field :model
+          %span.help-block
+            = @device.errors[:model].join(", ")
+      .control-group{class: @device.errors[:os].empty? ? '' : 'error'}
+        = f.label :os, 'OS', class: 'control-label'
+        .controls
+          = f.text_field :os
+          %span.help-block
+            = @device.errors[:os].join(", ")
+      .control-group{class: @device.errors[:os_version].empty? ? '' : 'error'}
+        = f.label :os_version, 'OS Version', class: 'control-label'
+        .controls
+          = f.text_field :os_version
+          %span.help-block
+            = @device.errors[:os_version].join(", ")
+      .control-group{class: @device.errors[:environment].empty? ? '' : 'error'}
+        = f.label :environment, class: 'control-label'
+        .controls
+          = f.text_field :environment, placeholder: 'The environment of operation.'
+          %span.help-block
+            = @device.errors[:environment].join(", ")
+      .control-group{class: @device.errors[:project].empty? ? '' : 'error'}
+        = f.label :project, class: 'control-label'
+        .controls
+          = f.text_field :project
+          %span.help-block
+            = @device.errors[:project].join(", ")
+      .control-group{class: @device.errors[:status].empty? ? '' : 'error'}
+        = f.label :status, class: 'control-label'
+        .controls
+          = select_tag(:status, options_for_select(['Available', 'In Use', 'Not Available']))
+          %span.help-block
+            = @device.errors[:status].join(", ")
+      .control-group{class: @device.errors[:owner_id].empty? ? '' : 'error'}
+        = f.label :owner_id, class: 'control-label'
+        .controls
+          = f.text_field :owner_id, placeholder: 'Start typing in the user name'
+          %span.help-block
+            = @device.errors[:owner_id].join(", ")
+      .control-group{class: @device.errors[:possesser_id].empty? ? '' : 'error'}
+        = f.label :posesser_id, class: 'control-label'
+        .controls
+          = f.text_field :possesser_id, placeholder: 'Start typing in the user name'
+          %span.help-block
+            = @device.errors[:possesser_id].join(", ")
 
+    .span6
+      .control-group{class: @device.errors[:device_photo].empty? ? '' : 'error'}
+        = f.label :Photo, 'Photo', class: 'control-label'
+        .controls
+          .img-placeholder.small
+            = image_tag @device.device_photo.url(:small)
+          = f.file_field :device_photo
+          %span.help-block
+            = @device.errors[:device_photo].join(", ")
+      .control-group{class: @device.errors[:serial_num].empty? ? '' : 'error'}
+        = f.label :serial_num, 'Serial Number', class: 'control-label'
+        .controls
+          = f.text_field :serial_num
+          %span.help-block
+            = @device.errors[:serial_num].join(", ")
+      .control-group{class: @device.errors[:phone_num].empty? ? '' : 'error'}
+        = f.label :phone_num, 'Phone Number', class: 'control-label'
+        .controls
+          = f.text_field :phone_num
+          %span.help-block
+            = @device.errors[:phone_num].join(", ")
+      .control-group{class: @device.errors[:service_provider].empty? ? '' : 'error'}
+        = f.label :service_provider, 'Service Provider', class: 'control-label'
+        .controls
+          = f.text_field :service_provider, placeholder: 'The service provider of the SIM.'
+          %span.help-block
+            = @device.errors[:service_provider].join(", ")
+      .control-group{class: @device.errors[:mac_addr].empty? ? '' : 'error'}
+        = f.label :mac_addr, 'MAC Address', class: 'control-label'
+        .controls
+          = f.text_field :mac_addr
+          %span.help-block
+            = @device.errors[:mac_addr].join(", ")
+      .control-group{class: @device.errors[:ip_addr].empty? ? '' : 'error'}
+        = f.label :ip_addr, 'IP Address', class: 'control-label'
+        .controls
+          = f.text_field :ip_addr
+          %span.help-block
+            = @device.errors[:ip_addr].join(", ")
+  
   %h3= accessories_heading(@device)
   = f.fields_for :accessories do |accessories_fields|
     = render 'accessories/form', :f => accessories_fields

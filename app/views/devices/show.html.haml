@@ -7,8 +7,8 @@
     .pull-left
       %h2= device_name(@device)
     .pull-right
-      = link_to 'Edit', edit_device_path(@device), class: 'btn btn-mini'
-      = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini btn-warning'
+      = link_to 'Edit', edit_device_path(@device), class: 'btn btn-medium'
+      = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-medium btn-warning'
   .row-fluid
     .span4
       .field
@@ -44,7 +44,7 @@
         = "#{@device.serial_num}"
     .span4
       .img-placeholder.small
-        = image_tag @device.device_photo.url(:small), height: 250, width: 100
+        = image_tag @device.device_photo.url(:small)
 
 = render 'accessories/list'
 
