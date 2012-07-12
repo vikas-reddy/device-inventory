@@ -79,6 +79,9 @@ GEM
     mysql2 (0.3.11)
     nokogiri (1.5.5)
     orm_adapter (0.3.0)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     paperclip (3.1.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -154,6 +157,7 @@ DEPENDENCIES
   hpricot
   jquery-rails
   mysql2
+  paper_trail
   paperclip
   rails (= 3.2.6)
   ruby_parser

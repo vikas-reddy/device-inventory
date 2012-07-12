@@ -49,4 +49,6 @@
 = render 'accessories/list'
 
 %h3 Events
-No events yet
+- @device_events.each do |dev_event|
+  = dev_event.item_type + '         ' + dev_event.event + '(d)' + '   on  ' + dev_event.created_at.strftime('%D at  %H:%m:%S hrs')
+  %br

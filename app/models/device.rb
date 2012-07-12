@@ -23,6 +23,9 @@ class Device < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "/:style/:id/:filename"
 
+  #paper_trail 
+  has_paper_trail
+
   def self.search(query)
     q = "%#{query}%"
     self.where(["make LIKE ? OR model LIKE ? OR os LIKE ? OR os_version LIKE ? OR project LIKE ?", q, q, q, q, q])
