@@ -1,0 +1,2 @@
+device_types: ["Smartphone", "Tablet"]
+accessory_types: ["Charger", "USB Cable", "Case/Cover", "Headset (Wired)", "Headset (Bluetooth)"]
