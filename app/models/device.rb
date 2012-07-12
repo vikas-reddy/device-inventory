@@ -1,4 +1,6 @@
 class Device < ActiveRecord::Base
+  #paper_trail 
+  has_paper_trail
 
   attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner_name, :possesser_name
 
@@ -30,8 +32,6 @@ class Device < ActiveRecord::Base
   before_validation :parse_emails
   after_find :load_emails
 
-  #paper_trail 
-  has_paper_trail
 
   def self.search(query)
     q = "%#{query}%"

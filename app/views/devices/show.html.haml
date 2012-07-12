@@ -49,6 +49,21 @@
 = render 'accessories/list'
 
 %h3 Events
-- @device_events.each do |dev_event|
-  = dev_event.item_type + '         ' + dev_event.event + '(d)' + '   on  ' + dev_event.created_at.strftime('%D at  %H:%m:%S hrs')
-  %br
+- if !@device_events.empty?
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Device Type
+        %th Event 
+        %th Date
+        %th Updated By
+       
+    %tbody
+      - @device_events.each do |dev_event|
+        %tr
+          %td= "#{dev_event.item_type}"
+          %td= dev_event.event
+          %td= dev_event.created_at.strftime('%D at  %H:%m:%S hrs')
+          %td= dev_event.whodunnit
+- else          
+  No Event(s)
