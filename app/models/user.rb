@@ -11,4 +11,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
 
   validates :email, uniqueness: true, presence: true
+
+  def hybrid_name
+    "#{name} <#{email}>"
+  end
+
+  def self.search(query)
+    q = "%#{query}%"
+    where('name LIKE ? OR email LIKE ?', q, q)
+  end
 end

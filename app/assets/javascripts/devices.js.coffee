@@ -27,6 +27,16 @@ $(document).ready (e) ->
         @className = "search_init"
         @value = asInitVals[$("tfoot input").index(this)]
 
+    # Click a row to go to its show page
+    $('#device-list').on 'click', '.clickable', (e) ->
+      e.preventDefault
+      window.location = $(this).attr('data-url')
+      true
+
+    # Tooltips
+    $('[rel="tooltip"]', '#device-list').tooltip()
+    
+    true
 
   # Device forms in edit and new pages
   if($('#device-form').length > 0)
@@ -50,3 +60,14 @@ $(document).ready (e) ->
       $(this).closest('.accessory-form-inline').remove()
       return false
 
+    # Owner and Possesser typeahead
+    $('.typeahead', '#device-form').typeahead
+      source: (typeahead, query) ->
+        $.ajax
+          url: '/users/search'
+          dataType: 'json'
+          data: {q: query}
+          success: (data) ->
+            typeahead.process(data)
+
+  return true
