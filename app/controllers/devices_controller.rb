@@ -12,6 +12,7 @@ class DevicesController < ApplicationController
     end
   end
 
+  # Exporting devices list to a Excel file
   def export
     @devices = Device.all
     require 'spreadsheet'
@@ -53,6 +54,7 @@ class DevicesController < ApplicationController
   def show
     @device = Device.find(params[:id])
     @accessory = Accessory.new
+    @device_events = Version.find(:all, :conditions=>["item_id=?", @device.id])
 
     respond_to do |format|
       format.html # show.html.erb

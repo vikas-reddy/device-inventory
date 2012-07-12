@@ -30,6 +30,9 @@ class Device < ActiveRecord::Base
   before_validation :parse_emails
   after_find :load_emails
 
+  #paper_trail 
+  has_paper_trail
+
   def self.search(query)
     q = "%#{query}%"
     self.where(["make LIKE ? OR model LIKE ? OR os LIKE ? OR os_version LIKE ? OR project LIKE ?", q, q, q, q, q])

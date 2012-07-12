@@ -36,6 +36,9 @@ gem "aws-sdk"
 
 #Export Excel
 gem 'spreadsheet'
+
+#Audit Logging for Devices Model using Paper_Trail
+gem 'paper_trail'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
