@@ -13,7 +13,7 @@
     .span4
       .field
         %b OS:
-        = "#{@device.os} #{@device.os_version}"
+        = "#{@device.os_name}"
       .field
         %b Project:
         = "#{@device.project}"
@@ -25,10 +25,10 @@
         = "#{@device.status}"
       .field
         %b Owner:
-        = "#{@device.owner_id}"
+        = "#{@device.owner.try(:name)}"
       .field
         %b Possesser:
-        = "#{@device.possesser_id}"
+        = "#{@device.possesser.try(:name)}"
     .span4
       .field
         %b Mac Address:

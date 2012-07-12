@@ -9,7 +9,7 @@
         Editing
         = device_name(@device)
     .pull-right
-      = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-medium btn-warning'
+      = link_to 'Delete', @device, method: :delete, class: 'btn btn-medium btn-warning', data: {confirm: 'Are you sure?'}
 
   .row-fluid
     = render 'form'

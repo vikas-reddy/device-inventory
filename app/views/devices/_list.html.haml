@@ -8,7 +8,6 @@
       %th Status
       %th Assigned To
       %th Owned By 
-      %th
   %tbody
     - @devices.each do |device|
       %tr.clickable{'data-url' => device_path(device)}
@@ -17,9 +16,8 @@
         %td= "#{device.os} #{device.os_version}"
         %td= device.project
         %td= device.status
-        %td= device.owner_id
-        %td= device.owner_id
-        %td= link_to 'Show', device_path(device), class: 'btn'
+        %td{rel: 'tooltip', title: device.owner.try(:email)}= device.owner.try(:name)
+        %td{rel: 'tooltip', title: device.possesser.try(:email)}= device.possesser.try(:name)
   %tfoot
     %tr
       %td
@@ -32,7 +30,6 @@
         %input.search_init{:name => "search_project", :type => "text", :value => "Search Project"}/
       %td
         %input.search_init{:name => "search_status", :type => "text", :value => "Search Status"}/
-      %td
       %td
       %td
 =link_to 'Export', export_devices_path(:format => :xls)

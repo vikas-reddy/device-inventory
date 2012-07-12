@@ -49,18 +49,18 @@
           = select_tag(:status, options_for_select(['Available', 'In Use', 'Not Available']))
           %span.help-block
             = @device.errors[:status].join(", ")
-      .control-group{class: @device.errors[:owner_id].empty? ? '' : 'error'}
-        = f.label :owner_id, class: 'control-label'
+      .control-group{class: @device.errors[:owner_name].empty? ? '' : 'error'}
+        = f.label :owner_name, class: 'control-label'
         .controls
-          = f.text_field :owner_id, placeholder: 'Start typing in the user name'
+          = f.text_field :owner_name, class: 'typeahead', placeholder: 'Start typing in the user name'
           %span.help-block
-            = @device.errors[:owner_id].join(", ")
-      .control-group{class: @device.errors[:possesser_id].empty? ? '' : 'error'}
-        = f.label :posesser_id, class: 'control-label'
+            = @device.errors[:owner_name].join(", ")
+      .control-group{class: @device.errors[:possesser_name].empty? ? '' : 'error'}
+        = f.label :possesser_name, class: 'control-label'
         .controls
-          = f.text_field :possesser_id, placeholder: 'Start typing in the user name'
+          = f.text_field :possesser_name, class: 'typeahead', placeholder: 'Start typing in the user name'
           %span.help-block
-            = @device.errors[:possesser_id].join(", ")
+            = @device.errors[:possesser_name].join(", ")
 
     .span6
       .control-group{class: @device.errors[:device_photo].empty? ? '' : 'error'}

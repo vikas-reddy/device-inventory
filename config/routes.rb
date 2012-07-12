@@ -20,7 +20,11 @@ DeviceInventory::Application.routes.draw do
     resources :accessories
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get :search
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

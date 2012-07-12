@@ -3,13 +3,9 @@
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal well'}) do |f|
   = devise_error_messages!
   .control-group
-    = f.label :first_name, class: 'control-label'
+    = f.label :name, class: 'control-label'
     .controls
-      = f.text_field :first_name
-  .control-group
-    = f.label :last_name, class: 'control-label'
-    .controls
-      = f.text_field :last_name
+      = f.text_field :name
   .control-group
     = f.label :email, class: 'control-label'
     .controls
