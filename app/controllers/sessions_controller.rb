@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   # DELETE /sign_out
   def destroy
-    session[:username] = nil
+    session[:username], session[:is_admin] = nil, nil
     flash[:alert] = 'You\'re logged out of the application'
     redirect_to signin_path
   end
