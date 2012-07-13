@@ -6,11 +6,7 @@ class SessionsController < ApplicationController
 
   # POST /sign_in
   def create
-    ldap = Net::LDAP.new(
-      host: 'ldap.pramati.com',
-      auth: {method: :simple, username: "uid=#{params[:username]},ou=Employees,dc=pramati,dc=com", password: params[:password]}
-    )
-    if ldap.bind
+    if PramatiLdap::authenticate(params[:username], params[:password])
       session[:username] = params[:username]
       flash.now[:alert] = 'Successfully signed in'
       redirect_to devices_path
