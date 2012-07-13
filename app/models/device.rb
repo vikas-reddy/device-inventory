@@ -7,8 +7,6 @@ class Device < ActiveRecord::Base
   attr_accessor :owner_name, :possesser_name
 
   # Associations
-  belongs_to :owner, class_name: 'User'
-  belongs_to :possesser, class_name: 'User'
   has_many :accessories, dependent: :destroy
   belongs_to :device_type
   accepts_nested_attributes_for :accessories, allow_destroy: true
@@ -30,8 +28,8 @@ class Device < ActiveRecord::Base
     path: "/:style/:id/:filename"
 
   # Filters
-  before_validation :parse_emails
-  after_find :load_emails
+  #before_validation :parse_emails
+  #after_find :load_emails
 
 
   def self.search(query)

@@ -1,7 +1,7 @@
 %h2 Sign in
 = form_tag sessions_path do
   %div
-    = label_tag :username
+    = label_tag :username, 'LDAP Username'
     = text_field_tag :username, params[:username]
   %div
     = label_tag :password

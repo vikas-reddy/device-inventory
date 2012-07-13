@@ -16,8 +16,8 @@
         %td= "#{device.os} #{device.os_version}"
         %td= device.project
         %td= device.status
-        %td{rel: 'tooltip', title: device.owner.try(:email)}= device.owner.try(:name)
-        %td{rel: 'tooltip', title: device.possesser.try(:email)}= device.possesser.try(:name)
+        %td= device.owner
+        %td= device.possessor
   %tfoot
     %tr
       %td
