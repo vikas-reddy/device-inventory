@@ -17,7 +17,6 @@ class Device < ActiveRecord::Base
   validates :phone_num, format: {with: %r|^[1-9]\d{9}$|, message: "should be 10-digit"}, allow_nil: true
 
   # Constants
-  DeviceTypes = %w(Smartphone Tablet)
   Statuses = %w(Available In-Use Under-Repair)
 
   # Paperclip

@@ -5,12 +5,4 @@ class Accessory < ActiveRecord::Base
   belongs_to :device
   belongs_to :accessory_type
 
-  AccessoryTypes = [
-    'Charger',
-    'USB Cable',
-    'Case/Cover',
-    'Headset (Wired)',
-    'Headset (Bluetooth)'
-  ]
-
 end

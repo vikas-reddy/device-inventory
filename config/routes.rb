@@ -21,7 +21,7 @@ DeviceInventory::Application.routes.draw do
   resources :sessions
 
   namespace :admin do
-    resource :dashboard
+    get 'dashboard' => 'dashboard#index'
   end
 
   # The priority is based upon order of creation:
