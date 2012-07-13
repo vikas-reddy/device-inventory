@@ -1,0 +1,13 @@
+%h2 Sign in
+= form_tag sessions_path do
+  %div
+    = label_tag :username
+    = text_field_tag :username, params[:username]
+  %div
+    = label_tag :password
+    = password_field_tag :password
+  - if false and devise_mapping.rememberable?
+    %div
+      = check_box :remember_me
+      = label :remember_me, :class => "inline-block"
+  %div= submit_tag "Sign in", :class => "btn btn-large btn-primary"

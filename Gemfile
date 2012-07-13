@@ -27,7 +27,7 @@ group :development do
 end
 
 gem 'jquery-rails'
-gem 'devise'
+gem 'net-ldap'
 
 # Paperclip
 gem 'paperclip'

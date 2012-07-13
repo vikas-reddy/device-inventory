@@ -1,15 +1,7 @@
 DeviceInventory::Application.routes.draw do
 
-  devise_for :users do
-    get '/signin' => 'devise/sessions#new'
-    get '/signup', :to => "devise/registrations#new"
-    get '/users/confirm', :to => 'devise/confirmations#new'
-    get '/users/reset_password', :to => 'devise/passwords#new'
-    get '/users/change_password', :to => 'devise/passwords#edit'
-  end
-
-  devise_for :users
-
+  get '/signin' => 'sessions#new'
+  delete'/signout' => 'sessions#destroy'
 
   resources :devices do
     collection do
@@ -25,6 +17,8 @@ DeviceInventory::Application.routes.draw do
       get :search
     end
   end
+
+  resources :sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

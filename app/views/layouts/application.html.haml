@@ -17,16 +17,13 @@
           .btn-group.pull-right
             %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %i.icon-user
-              = user_signed_in? ? current_user.email.sub(/@.*$/, '') : 'Guest'
+              = user_signed_in? ? current_user : 'Guest'
               %span.caret
             %ul.dropdown-menu
               - if user_signed_in?
-                %li= link_to 'Profile', '/users/edit'
-                %li.divider
-                %li= link_to("Sign out", destroy_user_session_path, :method => :delete)
+                %li= link_to("Sign Out", signout_path, :method => :delete)
               - else
-                %li
-                  = link_to 'Login', signin_path
+                %li= link_to 'Sign In', signin_path
           .nav-collapse
             %ul.nav.pull-left
               %li= link_to 'Home', root_path
