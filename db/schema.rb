@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712063035) do
+ActiveRecord::Schema.define(:version => 20120713064629) do
 
   create_table "accessories", :force => true do |t|
-    t.string   "accessory_type"
     t.text     "description"
     t.string   "manufacturer"
     t.integer  "device_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "accessory_type_id"
   end
 
   create_table "accessory_types", :force => true do |t|
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20120712063035) do
 
   create_table "devices", :force => true do |t|
     t.string   "serial_num"
-    t.string   "device_type"
     t.string   "make"
     t.string   "model"
     t.string   "os"
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120712063035) do
     t.string   "device_photo_file_name"
     t.string   "device_photo_content_type"
     t.integer  "device_photo_file_size"
+    t.integer  "device_type_id"
   end
 
   create_table "users", :force => true do |t|

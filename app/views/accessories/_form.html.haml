@@ -1,5 +1,5 @@
 .well.accessory-form-inline
-  = f.select  :accessory_type, Accessory::AccessoryTypes, placeholder: 'Accessory Type'
+  = f.select  :accessory_type_id, AccessoryType.all.map {|at| [at.name, at.id]}, placeholder: 'Accessory Type'
   = f.text_field :manufacturer, placeholder: 'Manufacturer'
   = f.text_field :description, placeholder: 'Comments'
   .pull-right{rel: 'tooltip', title: 'Mark for deletion'}

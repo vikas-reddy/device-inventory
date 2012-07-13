@@ -2,7 +2,7 @@ class Device < ActiveRecord::Base
   #paper_trail 
   has_paper_trail
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner_name, :possesser_name
+  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner_name, :possesser_name
 
   attr_accessor :owner_name, :possesser_name
 
@@ -10,6 +10,7 @@ class Device < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :possesser, class_name: 'User'
   has_many :accessories, dependent: :destroy
+  belongs_to :device_type
   accepts_nested_attributes_for :accessories, allow_destroy: true
 
   # Validations

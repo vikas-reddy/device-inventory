@@ -12,7 +12,7 @@
     - @devices.each do |device|
       %tr.clickable{'data-url' => device_path(device)}
         %td= "#{device.make} #{device.model}"
-        %td= device.device_type
+        %td= device.device_type.try(:name)
         %td= "#{device.os} #{device.os_version}"
         %td= device.project
         %td= device.status

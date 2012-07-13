@@ -11,6 +11,6 @@
     %tbody
       - @device.accessories.each do |accessory|
         %tr{class: "accessory-row", id: "accessory-row-#{accessory.id}"}
-          %td= accessory.accessory_type
+          %td= accessory.accessory_type.try(:name)
           %td= accessory.manufacturer
           %td= accessory.description

@@ -4,7 +4,7 @@
       .control-group{class: @device.errors[:device_type].empty? ? '' : 'error'}
         = f.label :device_type, 'Device Type', class: 'control-label'
         .controls
-          = f.select :device_type, Device::DeviceTypes
+          = f.select :device_type_id, DeviceType.all.map {|dt| [dt.name, dt.id]}
           %span.help-block
             = @device.errors[:device_type].join(", ")
       .control-group{class: @device.errors[:make].empty? ? '' : 'error'}
