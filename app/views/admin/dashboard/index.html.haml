@@ -1,0 +1,47 @@
+%h3 Administrators
+%table#administrators.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th
+  %tbody
+    - @administrators.each do |administrator|
+      %tr
+        %td= administrator.username
+        %td= link_to (content_tag(:i, '', class: 'icon-remove')), admin_administrator_path(administrator), method: :delete, confirm: 'Are you sure?'
+    %tr
+      %td
+        = form_for [:admin, @administrator], html: {class: 'form-inline'} do |f|
+          = f.text_field :username, placeholder: 'LDAP Username', class: 'typeahead'
+          = f.submit 'Add Administrator', class: 'btn btn-primary'
+      %td
+
+%h3 Device Types
+%table#device-types.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @device_types.each do |device_type|
+      %tr
+        %td= device_type.name
+    %tr
+      %td
+        = form_for [:admin, @device_type], html: {class: 'form-inline'} do |f|
+          = f.text_field :name, placeholder: 'Device Type'
+          = f.submit 'Add Device Type', class: 'btn btn-primary'
+
+%h3 Accessory Types
+%table#accessory-types.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @accessory_types.each do |accessory_type|
+      %tr
+        %td= accessory_type.name
+    %tr
+      %td
+        = form_for [:admin, @accessory_type], html: {class: 'form-inline'} do |f|
+          = f.text_field :name, placeholder: 'Accessory Type'
+          = f.submit 'Add Accessory Type', class: 'btn btn-primary'

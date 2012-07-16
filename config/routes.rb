@@ -22,6 +22,13 @@ DeviceInventory::Application.routes.draw do
 
   namespace :admin do
     get 'dashboard' => 'dashboard#index'
+    resources :device_types
+    resources :accessory_types
+    resources :administrators do
+      collection do
+        get :search
+      end
+    end
   end
 
   # The priority is based upon order of creation:

@@ -11,6 +11,20 @@ module PramatiLdap
     @ldap.bind
   end
 
+  def self.search(q)
+    @ldap ||= Net::LDAP.new(host: 'ldap.pramati.com')
+    @ldap.bind
+    @ldap.search(
+      base: 'ou=Employees,dc=pramati,dc=com',
+      filter: Net::LDAP::Filter.eq('uid', "*#{q}*")
+    ).map do |r|
+      r['uid'].first
+    end
+
+  rescue Encoding::UndefinedConversionError
+    return []
+  end
+
   def load_details(username)
   end
 end
