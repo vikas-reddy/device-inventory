@@ -9,7 +9,7 @@
         %th Manufacturer
         %th Comments
     %tbody
-      - @device.accessories.each do |accessory|
+      - @device.accessories.all(include: :accessory_type).each do |accessory|
         %tr{class: "accessory-row", id: "accessory-row-#{accessory.id}"}
           %td= accessory.accessory_type.try(:name)
           %td= accessory.manufacturer

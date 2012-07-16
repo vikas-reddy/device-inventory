@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     session[:username]
   end
 
-  def authenticate_user!
+  def login_required
     unless user_signed_in?
       flash[:warning] = 'You need to be logged in before accessing this page'
       redirect_to signin_path

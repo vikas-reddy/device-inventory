@@ -1,11 +1,11 @@
 class DevicesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :login_required
 
   # GET /devices
   # GET /devices.json
   #
   def index
-    @devices = Device.all
+    @devices = Device.all(include: :device_type)
     respond_to do |format|
       format.html # index.html.erb 
       format.json { render json: @devices }
