@@ -40,7 +40,8 @@ class DevicesController < ApplicationController
   #Import Devices Data from Excel
   def import
     n=0
-    Spreadsheet.open('device_info.xls') do |device|
+    import_file = params[:device_import_file]
+    Spreadsheet.open(import_file) do |device|
       device.worksheet('Sheet1').each do |row|
         d = Device.new
         #break if row[0].nil?
