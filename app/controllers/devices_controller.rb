@@ -1,5 +1,6 @@
 class DevicesController < ApplicationController
   before_filter :login_required
+  before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /devices
   # GET /devices.json

@@ -7,8 +7,9 @@
     .pull-left
       %h2= device_name(@device)
     .pull-right
-      = link_to 'Edit', edit_device_path(@device), class: 'btn btn-medium'
-      = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-medium btn-warning'
+      - if is_admin?
+        = link_to 'Edit', edit_device_path(@device), class: 'btn btn-medium'
+        = link_to 'Delete', @device, method: :delete, confirm: 'Are you sure?', class: 'btn btn-medium btn-warning'
   .row-fluid
     .span4
       .field

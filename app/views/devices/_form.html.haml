@@ -52,13 +52,13 @@
       .control-group{class: @device.errors[:owner_name].empty? ? '' : 'error'}
         = f.label :owner_name, class: 'control-label'
         .controls
-          = f.text_field :owner_name, class: 'typeahead', placeholder: 'Start typing in the user name'
+          = f.text_field :owner_name, class: 'typeahead', placeholder: 'Start typing in the user name', autocomplete: 'off'
           %span.help-block
             = @device.errors[:owner_name].join(", ")
       .control-group{class: @device.errors[:possesser_name].empty? ? '' : 'error'}
         = f.label :possesser_name, class: 'control-label'
         .controls
-          = f.text_field :possesser_name, class: 'typeahead', placeholder: 'Start typing in the user name'
+          = f.text_field :possesser_name, class: 'typeahead', placeholder: 'Start typing in the user name', autocomplete: 'off'
           %span.help-block
             = @device.errors[:possesser_name].join(", ")
 

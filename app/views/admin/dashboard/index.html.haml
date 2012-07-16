@@ -12,7 +12,7 @@
     %tr
       %td
         = form_for [:admin, @administrator], html: {class: 'form-inline'} do |f|
-          = f.text_field :username, placeholder: 'LDAP Username', class: 'typeahead'
+          = f.text_field :username, placeholder: 'LDAP Username', class: 'typeahead', autocomplete: 'off'
           = f.submit 'Add Administrator', class: 'btn btn-primary'
       %td
 

@@ -2,9 +2,10 @@
   .pull-left
     %h2 Listing Devices
   .pull-right
-    %a.btn.btn-primary{href: new_device_path}
-      %i.icon-plus.icon-white
-      Add Device
+    - if is_admin?
+      %a.btn.btn-primary{href: new_device_path}
+        %i.icon-plus.icon-white
+        Add Device
 
 %legend
 

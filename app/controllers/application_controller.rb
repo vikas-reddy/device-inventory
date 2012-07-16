@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
 
   def login_required
     unless user_signed_in?
-      flash[:warning] = 'You need to be logged in before accessing this page'
-      redirect_to signin_path
+      redirect_to signin_path, notice: 'You need to be logged in before accessing this page'
     end
   end
 
@@ -28,8 +27,9 @@ class ApplicationController < ActionController::Base
 
   def admin_required
     unless is_admin?
-      flash.now[:error] = 'Only administrators can access this page'
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Only administrators can access this page' }
+      end
     end
   end
 end
