@@ -64,7 +64,7 @@ $(document).ready (e) ->
     $('.typeahead', '#device-form').typeahead
       source: (typeahead, query) ->
         $.ajax
-          url: '/users/search'
+          url: '/admin/administrators/search'
           dataType: 'json'
           data: {q: query}
           success: (data) ->

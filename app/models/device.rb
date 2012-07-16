@@ -2,7 +2,7 @@ class Device < ActiveRecord::Base
   #paper_trail 
   has_paper_trail
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner_name, :possesser_name
+  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :status, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor
 
   attr_accessor :owner_name, :possesser_name
 
@@ -40,32 +40,4 @@ class Device < ActiveRecord::Base
     "#{os} (#{os_version})"
   end
 
-  private
-
-  def load_emails
-    @owner_name = owner.hybrid_name if owner_id?
-    @possesser_name = possesser.hybrid_name if possesser_id?
-  end
-
-  def parse_emails
-    # Owner
-    owner_name.to_s.strip!
-    if owner_name.blank?
-      owner_id = nil
-    else
-      unless (owner_name =~ /<(.+)>$/) and (u = User.where(email: $1).select(:id).first) and (self.owner_id = u.id)
-        errors[:owner_name] << "is invalid"
-      end
-    end
-
-    # Possesser
-    possesser_name.to_s.strip!
-    if possesser_name.blank?
-      possesser_id = nil
-    else
-      unless (possesser_name =~ /<(.+)>$/) and (u = User.where(email: $1).select(:id).first) and (self.possesser_id = u.id)
-        errors[:possesser_name] << "is invalid"
-      end
-    end
-  end
 end
