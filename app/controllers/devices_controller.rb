@@ -16,12 +16,11 @@ class DevicesController < ApplicationController
   # Exporting devices list to a Excel file
   def export
     @devices = Device.all
-    require 'spreadsheet'
     respond_to do |format|
       format.pdf
       format.xls {
         devices = Spreadsheet::Workbook.new
-        list = devices.create_worksheet :name => 'List of cliets'
+        list = devices.create_worksheet :name => 'devices_list'
         list.row(0).concat %w{Make Model SerialNumber Os OsVersion Environment Project Status Provider Phone MACID IPADDR AssignedTo} 
         @devices.each_with_index { |device, i|
           list.row(i+1).push device.make,device.model,device.serial_num,device.os,device.os_version,device.environment,device.project,device.status,
@@ -37,7 +36,41 @@ class DevicesController < ApplicationController
       }
     end
   end
-
+  
+  #Import Devices Data from Excel
+  def import
+    n=0
+    Spreadsheet.open('device_info.xls') do |device|
+      device.worksheet('Sheet1').each do |row|
+        d = Device.new
+        #break if row[0].nil?
+        d.serial_num = row[1]
+        d.make = row[2]
+        d.model = row[3]
+        d.os = row[4]
+        d.os_version = row[5]
+        d.environment = row[6]
+        d.project = row[7]
+        d.service_provider = row[8]
+        d.phone_num = row[9].to_i.to_s
+        d.mac_addr = row[10]
+        d.ip_addr = row[11]
+        d.status = "Available"
+        puts "######################################"
+        logger.info d.inspect  
+        puts "######################################"
+        d.save(validate: false)
+        puts "######################################"
+        logger.info d.errors.inspect  
+        puts "######################################"
+      end
+    end
+    flash.now[:message]="Import Successful,  #{n} new records added to data base"
+    respond_to do |format|
+      format.html { redirect_to devices_url }
+      format.json { head :no_content }
+    end
+  end
 
   # GET /devices/search
   # GET /devices/search.json
