@@ -60,7 +60,7 @@ class DevicesController < ApplicationController
           puts "######################################"
           logger.info d.inspect  
           puts "######################################"
-          d.save(validate: false)
+          d.save
           puts "######################################"
           logger.info d.errors.inspect  
           puts "######################################"
@@ -92,7 +92,6 @@ class DevicesController < ApplicationController
   def show
     @device = Device.find(params[:id])
     @accessory = Accessory.new
-    @device_events = Version.where(item_id: @device.id)
 
     respond_to do |format|
       format.html # show.html.erb

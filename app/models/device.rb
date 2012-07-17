@@ -15,6 +15,7 @@ class Device < ActiveRecord::Base
   validates_presence_of :environment, :ip_addr, :make, :model, :os, :os_version, :project, :serial_num
   validates :mac_addr, format: {with: %r|^(\h\h:){5}\h\h$|, message: "should be 48-bit hexadecimal string"}, presence: true
   validates :phone_num, format: {with: %r|^[1-9]\d{9}$|, message: "should be 10-digit"}, allow_nil: true
+  validates :serial_num, uniqueness: true, presence: true
 
   # Constants
   Statuses = %w(Available In-Use Under-Repair)
