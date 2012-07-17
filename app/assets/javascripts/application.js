@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $(document).on('click', '.disabled', function(e) {
+    return false;
+  });
+});

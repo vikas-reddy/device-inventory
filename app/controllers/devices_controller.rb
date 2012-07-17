@@ -157,7 +157,17 @@ class DevicesController < ApplicationController
     end
   end
 
-  def request!
+  # POST /devices/:id/ask
+  def ask
+    @device = Device.find(params[:id])
+
+    respond_to do |format|
+      if @device.request
+        format.json { render json: {status: 'success', id: @device.id, notice: 'Sent a request successfully.'} }
+      else
+        format.json { render json: {status: 'failure', notice: 'Unable to add a request.'} }
+      end
+    end
   end
 
   def reject

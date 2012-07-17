@@ -1,0 +1,23 @@
+%script#device-actions-template{type: 'text/x-jquery-tmpl'}
+  .modal-header
+    %h3
+      Request for the device
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %i.icon-remove
+  .modal-body
+
+    %form.request_device{"accept-charset" => "UTF-8", :action => "/devices/${deviceId}/ask.json", :method => "post", :id => "request_device_${deviceId}", 'data-remote' => true}
+      %div{:style => "margin:0;padding:0;display:inline"}
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+        %input{:name => "_method", :type => "hidden", :value => "put"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}/
+      %div
+        By requesting this device, an email is sent out to the owner of the device, who will in turn approve your request. Are you sure you want to send a request?
+      .center
+        %input.request-button.btn.btn-primary{:type => :submit, :value => 'Request'}
+        .progress.progress-striped.active.hide
+          .bar{style: 'width: 100%'}
+  .modal-footer
+    .action-buttons
+      %a.btn{"data-dismiss" => "modal"} Close
+

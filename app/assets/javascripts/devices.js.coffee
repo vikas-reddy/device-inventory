@@ -40,10 +40,30 @@ $(document).ready (e) ->
     # Tooltips
     $('[rel="tooltip"]', '#device-list').tooltip()
     
-    $('#device-list').on 'click', '.issue-device', (e) ->
+    # Modal open
+    $('#device-list').on 'click', '.request-device', (e) ->
       e.preventDefault()
+      deviceId = $(this).attr('id').match(/-(\d+)$/)[1]
+      $('#device-actions').html($('#device-actions-template').tmpl({deviceId: deviceId}))
       $('#device-actions').modal()
       true
+
+    $('#device-actions').ajaxSend (e, xhr, options) ->
+      $('.request-button').hide()
+      $('.progress').show()
+      true
+
+    $('#device-actions').ajaxComplete (e, xhr, options) ->
+      resp = $.parseJSON(xhr.responseText)
+      $('.progress').hide()
+      $('.request-button').replaceWith('<div class="alert alert-info">' + resp.notice + '</div>')
+      if resp.status == 'success'
+        $('#request-device-' + resp.id).addClass 'disabled'
+      true
+
+    # Popovers
+    $('[rel="popover"]', '#device-list').popover
+      placement: 'top'
 
     true
 

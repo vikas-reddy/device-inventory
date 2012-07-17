@@ -11,7 +11,8 @@ DeviceInventory::Application.routes.draw do
     end
 
     member do
-      post :reject
+      put :ask
+      put :reject
       post :approve
       post :return
       post :make_unavailable
