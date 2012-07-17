@@ -28,6 +28,7 @@ end
 
 gem 'jquery-rails'
 gem 'net-ldap'
+gem 'state_machine'
 
 # Paperclip
 gem 'paperclip'

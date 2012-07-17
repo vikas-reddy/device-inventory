@@ -10,6 +10,15 @@ DeviceInventory::Application.routes.draw do
       post :import
     end
 
+    member do
+      post :request!
+      post :reject
+      post :approve
+      post :return
+      post :make_unavailable
+      post :make_available
+    end
+
     resources :accessories
   end
 

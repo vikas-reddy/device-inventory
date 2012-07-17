@@ -2,6 +2,9 @@ class DevicesController < ApplicationController
   before_filter :login_required
   before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
 
+  # before_filter :admin_required, only: [:make_available, :make_unavailable]
+  # before_filter :owner_required, only: [:reject, :approve]
+
   # GET /devices
   # GET /devices.json
   #
@@ -23,7 +26,7 @@ class DevicesController < ApplicationController
         list = devices.create_worksheet :name => 'devices_list'
         list.row(0).concat %w{Make Model SerialNumber Os OsVersion Environment Project Status Provider Phone MACID IPADDR AssignedTo} 
         @devices.each_with_index { |device, i|
-          list.row(i+1).push device.make,device.model,device.serial_num,device.os,device.os_version,device.environment,device.project,device.status,
+          list.row(i+1).push device.make,device.model,device.serial_num,device.os,device.os_version,device.environment,device.project,device.state,
             device.service_provider,device.phone_num,device.mac_addr,device.ip_addr,
         }
         header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
@@ -56,14 +59,8 @@ class DevicesController < ApplicationController
           d.phone_num = row[9].to_i.to_s
           d.mac_addr = row[10]
           d.ip_addr = row[11]
-          d.status = "Available"
-          puts "######################################"
-          logger.info d.inspect  
-          puts "######################################"
+          d.state = "available"
           d.save(validate: false)
-          puts "######################################"
-          logger.info d.errors.inspect  
-          puts "######################################"
         end
       end
       flash.now[:message]="Import Successful, new records added to data base"
@@ -153,6 +150,24 @@ class DevicesController < ApplicationController
         format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def request!
+  end
+
+  def reject
+  end
+
+  def approve
+  end
+
+  def return
+  end
+
+  def make_unavailable
+  end
+
+  def make_available
   end
 
   # DELETE /devices/1

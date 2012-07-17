@@ -3,7 +3,6 @@ class Admin::AdministratorsController < ApplicationController
 
   def search
     @administrators = PramatiLdap.search(params[:q])
-    logger.info "\n\n\n#{@administrators.inspect}\n\n\n\n"
 
     respond_to do |format|
       format.json { render json: @administrators }

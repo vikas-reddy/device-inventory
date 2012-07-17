@@ -16,7 +16,7 @@
         %td= device.device_type.try(:name)
         %td= "#{device.os} #{device.os_version}"
         %td= device.project
-        %td= device.status
+        %td= device.state
         %td= device.owner
         %td= device.possessor
         %td.device-actions= device_actions(device)
@@ -31,7 +31,7 @@
       %td
         %input.search_init{:name => "search_project", :type => "text", :value => "Search Project"}/
       %td
-        %input.search_init{:name => "search_status", :type => "text", :value => "Search Status"}/
+        %input.search_init{:name => "search_state", :type => "text", :value => "Search State"}/
       %td
       %td
 =link_to 'Export', export_devices_path(:format => :xls)

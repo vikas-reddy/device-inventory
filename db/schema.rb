@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713113323) do
+ActiveRecord::Schema.define(:version => 20120717060125) do
 
   create_table "accessories", :force => true do |t|
     t.text     "description"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20120713113323) do
     t.string   "ip_addr"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
-    t.string   "status"
+    t.string   "state"
     t.string   "device_photo_file_name"
     t.string   "device_photo_content_type"
     t.integer  "device_photo_file_size"
