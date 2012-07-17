@@ -16,32 +16,35 @@
           = f.submit 'Add Administrator', class: 'btn btn-primary'
       %td
 
-%h3 Device Types
-%table#device-types.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th Name
-  %tbody
-    - @device_types.each do |device_type|
-      %tr
-        %td= device_type.name
-    %tr
-      %td
-        = form_for [:admin, @device_type], html: {class: 'form-inline'} do |f|
-          = f.text_field :name, placeholder: 'Device Type'
-          = f.submit 'Add Device Type', class: 'btn btn-primary'
+.row-fluid
+  .span6
+    %h3 Device Types
+    %table#device-types.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th Name
+      %tbody
+        - @device_types.each do |device_type|
+          %tr
+            %td= device_type.name
+        %tr
+          %td
+            = form_for [:admin, @device_type], html: {class: 'form-inline'} do |f|
+              = f.text_field :name, placeholder: 'Device Type'
+              = f.submit 'Add Device Type', class: 'btn btn-primary'
 
-%h3 Accessory Types
-%table#accessory-types.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th Name
-  %tbody
-    - @accessory_types.each do |accessory_type|
-      %tr
-        %td= accessory_type.name
-    %tr
-      %td
-        = form_for [:admin, @accessory_type], html: {class: 'form-inline'} do |f|
-          = f.text_field :name, placeholder: 'Accessory Type'
-          = f.submit 'Add Accessory Type', class: 'btn btn-primary'
+  .span6
+    %h3 Accessory Types
+    %table#accessory-types.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th Name
+      %tbody
+        - @accessory_types.each do |accessory_type|
+          %tr
+            %td= accessory_type.name
+        %tr
+          %td
+            = form_for [:admin, @accessory_type], html: {class: 'form-inline'} do |f|
+              = f.text_field :name, placeholder: 'Accessory Type'
+              = f.submit 'Add Accessory Type', class: 'btn btn-primary'

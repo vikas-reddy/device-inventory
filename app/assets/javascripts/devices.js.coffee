@@ -30,12 +30,21 @@ $(document).ready (e) ->
     # Click a row to go to its show page
     $('#device-list').on 'click', '.clickable', (e) ->
       e.preventDefault
-      window.location = $(this).attr('data-url')
+
+      # Exception for action buttons
+      if $(e.target).closest('.device-actions').length == 0
+        window.location = $(this).attr('data-url')
+
       true
 
     # Tooltips
     $('[rel="tooltip"]', '#device-list').tooltip()
     
+    $('#device-list').on 'click', '.issue-device', (e) ->
+      e.preventDefault()
+      $('#device-actions').modal()
+      true
+
     true
 
   # Device forms in edit and new pages

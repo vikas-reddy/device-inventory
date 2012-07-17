@@ -8,6 +8,7 @@
       %th Status
       %th Assigned To
       %th Owned By 
+      %th
   %tbody
     - @devices.each do |device|
       %tr.clickable{'data-url' => device_path(device)}
@@ -18,6 +19,7 @@
         %td= device.status
         %td= device.owner
         %td= device.possessor
+        %td.device-actions= device_actions(device)
   %tfoot
     %tr
       %td
@@ -33,3 +35,18 @@
       %td
       %td
 =link_to 'Export', export_devices_path(:format => :xls)
+
+#device-actions.modal.fade
+  .modal-header
+    %h3
+      Issue/Return the device
+      %button.close{:type => 'button', 'data-dismiss' => 'modal'}
+        %i.icon-remove
+  .modal-body
+    - device = Device.new
+    = form_for device, class: 'form' do |f|
+      = f.label :possessor
+      = f.text_field :possessor, placeholder: 'LDAP Username', class: 'typeahead'
+  .modal-footer
+    %a.btn.btn-primary Save
+    %a.btn{'data-dismiss' => 'modal'} Cancel
