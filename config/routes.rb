@@ -11,7 +11,6 @@ DeviceInventory::Application.routes.draw do
     end
 
     member do
-      post :request!
       post :reject
       post :approve
       post :return

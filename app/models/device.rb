@@ -33,7 +33,7 @@ class Device < ActiveRecord::Base
       transition :available => :waiting
     end
 
-    # Device owner
+    # Device owner only
     event :approve do
       transition :waiting => :in_use
     end
@@ -44,7 +44,7 @@ class Device < ActiveRecord::Base
       transition :in_use => :available
     end
 
-    # Admin
+    # Admin only
     event :make_unavailable do
       transition [:available, :in_use, :waiting] => :not_available
     end
