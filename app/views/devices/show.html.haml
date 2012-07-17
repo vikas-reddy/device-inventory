@@ -43,6 +43,9 @@
       .field
         %b Serial:
         = "#{@device.serial_num}"
+      .field
+        %b Property Of:
+        = "#{@device.property_of}"
     .span4
       .img-placeholder.small
         = image_tag @device.device_photo.url(:small)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713113323) do
+ActiveRecord::Schema.define(:version => 20120717054948) do
 
   create_table "accessories", :force => true do |t|
     t.text     "description"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120713113323) do
     t.integer  "device_type_id"
     t.string   "owner"
     t.string   "possessor"
+    t.string   "property_of"
   end
 
   create_table "users", :force => true do |t|
