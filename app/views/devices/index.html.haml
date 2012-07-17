@@ -16,3 +16,16 @@
     to add a device.
 - else
   = render 'devices/list'
+
+
+= form_tag import_devices_path, :multipart => true do
+  %table
+    %tr
+      %td
+        %label{:for => "device_import_file"}
+          Import Devices via xls File:
+      %td
+        = file_field_tag :device_import_file
+    %tr
+      %td{:colspan => "2"}
+        = submit_tag 'Submit'

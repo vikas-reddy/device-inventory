@@ -7,6 +7,7 @@ DeviceInventory::Application.routes.draw do
     collection do
       get :search
       get :export
+      post :import
     end
 
     resources :accessories
