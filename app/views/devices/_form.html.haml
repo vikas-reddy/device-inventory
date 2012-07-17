@@ -61,6 +61,12 @@
           = f.text_field :possessor, class: 'typeahead', placeholder: 'Start typing in the user name', autocomplete: 'off'
           %span.help-block
             = @device.errors[:possessor].join(", ")
+      .control-group{class: @device.errors[:property_of].empty? ? '' : 'error'}
+        = f.label :property_of, 'Property Of', class: 'control-label'
+        .controls
+          = f.text_field :property_of
+          %span.help-block
+            = @device.errors[:property_of].join(", ")
 
     .span6
       .control-group{class: @device.errors[:device_photo].empty? ? '' : 'error'}
@@ -101,12 +107,6 @@
           = f.text_field :ip_addr
           %span.help-block
             = @device.errors[:ip_addr].join(", ")
-      .control-group{class: @device.errors[:property_of].empty? ? '' : 'error'}
-        = f.label :property_of, 'Property Of', class: 'control-label'
-        .controls
-          = f.text_field :property_of
-          %span.help-block
-            = @device.errors[:property_of].join(", ")
   
   %h3= accessories_heading(@device)
   = f.fields_for :accessories do |accessories_fields|
