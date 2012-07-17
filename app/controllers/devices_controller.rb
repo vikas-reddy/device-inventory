@@ -24,10 +24,10 @@ class DevicesController < ApplicationController
       format.xls {
         devices = Spreadsheet::Workbook.new
         list = devices.create_worksheet :name => 'devices_list'
-        list.row(0).concat %w{Make Model SerialNumber Os OsVersion Environment Project Status Provider Phone MACID IPADDR AssignedTo} 
+        list.row(0).concat %w{Make Model SerialNumber Os OsVersion Environment Project Status Provider Phone MACID IPADDR Property Of AssignedTo} 
         @devices.each_with_index { |device, i|
           list.row(i+1).push device.make,device.model,device.serial_num,device.os,device.os_version,device.environment,device.project,device.state,
-            device.service_provider,device.phone_num,device.mac_addr,device.ip_addr,
+            device.service_provider,device.phone_num,device.mac_addr,device.ip_addr,device.property_of
         }
         header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
         list.row(0).default_format = header_format
@@ -59,6 +59,7 @@ class DevicesController < ApplicationController
           d.phone_num = row[9].to_i.to_s
           d.mac_addr = row[10]
           d.ip_addr = row[11]
+          d.property_of = row[14]
           d.status = "available"
           puts "######################################"
           logger.info d.inspect  
