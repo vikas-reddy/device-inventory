@@ -59,8 +59,14 @@ class DevicesController < ApplicationController
           d.phone_num = row[9].to_i.to_s
           d.mac_addr = row[10]
           d.ip_addr = row[11]
-          d.state = "available"
-          d.save(validate: false)
+          d.status = "available"
+          puts "######################################"
+          logger.info d.inspect  
+          puts "######################################"
+          d.save
+          puts "######################################"
+          logger.info d.errors.inspect  
+          puts "######################################"
         end
       end
       flash.now[:message]="Import Successful, new records added to data base"
@@ -89,7 +95,6 @@ class DevicesController < ApplicationController
   def show
     @device = Device.find(params[:id])
     @accessory = Accessory.new
-    @device_events = Version.where(item_id: @device.id)
 
     respond_to do |format|
       format.html # show.html.erb

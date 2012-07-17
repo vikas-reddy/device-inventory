@@ -1,8 +1,6 @@
 class Device < ActiveRecord::Base
-  #paper_trail 
-  has_paper_trail
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor
+  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of
 
   attr_accessor :owner_name, :possesser_name
 
@@ -15,6 +13,7 @@ class Device < ActiveRecord::Base
   validates_presence_of :environment, :ip_addr, :make, :model, :os, :os_version, :project, :serial_num
   validates :mac_addr, format: {with: %r|^(\h\h:){5}\h\h$|, message: "should be 48-bit hexadecimal string"}, presence: true
   validates :phone_num, format: {with: %r|^[1-9]\d{9}$|, message: "should be 10-digit"}, allow_nil: true
+  validates :serial_num, uniqueness: true, presence: true
 
   # Constants
   Statuses = %w()

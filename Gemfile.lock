@@ -73,9 +73,6 @@ GEM
     mysql2 (0.3.11)
     net-ldap (0.3.1)
     nokogiri (1.5.5)
-    paper_trail (2.6.3)
-      activerecord (~> 3.0)
-      railties (~> 3.0)
     paperclip (3.1.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -150,7 +147,6 @@ DEPENDENCIES
   jquery-rails
   mysql2
   net-ldap
-  paper_trail
   paperclip
   rails (= 3.2.6)
   ruby_parser
