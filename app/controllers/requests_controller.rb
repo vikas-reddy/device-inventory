@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
         @req.destroy
         format.html { redirect_to requests_path, notice: "Successfully approved the request and an email has been sent to `#{device.possessor}`" }
       else
-        format.html { redirect_to requests_path, notice: "Unable to approve this request" }
+        format.html { redirect_to requests_path, notice: "Unable to approve the request" }
       end
     end
   end
@@ -27,9 +27,9 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if device.reject
         @req.destroy
-        format.html { redirect_to requests_path, notice: "Successfully rejected this request" }
+        format.html { redirect_to requests_path, notice: "Successfully rejected the request" }
       else
-        format.html { redirect_to requests_path, notice: "Unable to reject this request" }
+        format.html { redirect_to requests_path, notice: "Unable to reject the request" }
       end
     end
   end

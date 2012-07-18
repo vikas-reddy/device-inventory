@@ -50,3 +50,9 @@
 .export-to-excel {
   margin-right: 30px;
 }
+
+#device-actions .centered-info {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

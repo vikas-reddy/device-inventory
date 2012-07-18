@@ -13,7 +13,7 @@
         %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}/
       %div
         By requesting this device, an email is sent out to the owner of the device, who will in turn approve your request. Are you sure you want to send a request?
-      .center
+      %p.centered-info
         %input.request-button.btn.btn-primary{:type => :submit, :value => 'Request'}
         .progress.progress-striped.active.hide
           .bar{style: 'width: 100%'}

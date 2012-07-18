@@ -6,8 +6,9 @@
       %a.btn.btn-primary{href: new_device_path}
         %i.icon-plus.icon-white
         Add Device
-  .pull-right.export-to-excel
-    = link_to 'Export To Excel', export_devices_path(:format => :xls), class: 'btn'
+  - if is_admin?
+    .pull-right.export-to-excel
+      = link_to 'Export To Excel', export_devices_path(:format => :xls), class: 'btn'
 
 
 %legend
@@ -20,10 +21,11 @@
 - else
   = render 'devices/list'
 
-.row-fluid
-  .span6
-    = form_tag import_devices_path, :class => "well form form-vertical", :multipart => true do
-      %h3 Import an Excel
-      = file_field_tag :device_import_file
-      %br/
-      = submit_tag 'Import', class: 'btn btn-primary'
+- if is_admin?
+  .row-fluid
+    .span6
+      = form_tag import_devices_path, :class => "well form form-vertical", :multipart => true do
+        %h3 Import an Excel
+        = file_field_tag :device_import_file
+        %br/
+        = submit_tag 'Import', class: 'btn btn-primary'
