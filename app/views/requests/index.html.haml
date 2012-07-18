@@ -1,0 +1,19 @@
+%h3 Device Requests
+
+- if @requests.empty?
+  No pending device requests at the moment.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Device Name
+        %th Requested By
+        %th
+    - @requests.each do |req|
+      %tbody
+        %tr
+          %td= link_to device_name(req.device), device_path(req.device)
+          %td= req.requestor
+          %td
+            = link_to 'Approve', approve_request_path(req), method: :put, class: 'btn btn-primary'
+            = link_to 'Reject', reject_request_path(req), method: :put, class: 'btn btn-warning'
