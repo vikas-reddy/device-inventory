@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :user_signed_in?, :current_user, :is_admin?
+  helper_method :user_signed_in?, :current_user, :is_admin?, :is_owner?
 
   protected
 
@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
       session[:is_admin] = Administrator.exists?(username: current_user)
     end
     session[:is_admin]
+  end
+
+  def is_owner?(device)
+    current_user == device.owner
   end
 
   def admin_required

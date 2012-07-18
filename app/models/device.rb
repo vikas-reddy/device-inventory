@@ -6,6 +6,7 @@ class Device < ActiveRecord::Base
 
   # Associations
   has_many :accessories, dependent: :destroy
+  has_one :request
   belongs_to :device_type
   accepts_nested_attributes_for :accessories, allow_destroy: true
 
@@ -28,7 +29,7 @@ class Device < ActiveRecord::Base
   state_machine :state, :initial => :available do
 
     # Any user
-    event :request do
+    event :ask do
       transition :available => :waiting
     end
 

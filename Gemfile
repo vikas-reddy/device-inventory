@@ -23,6 +23,7 @@ end
 group :development do
   gem 'ruby_parser'
   gem 'hpricot'
+  gem 'letter_opener'
 end
 
 gem 'jquery-rails'

@@ -6,12 +6,13 @@ class RequestsController < ApplicationController
   end
 
   def approve
-    @request = Request.find(params[:id])
-    device = @request.device
+    @req = Request.find(params[:id])
+    device = @req.device
 
     respond_to do |format|
-      if device.approve and device.update_attributes(possessor: @request.requestor)
-        @request.destroy
+      if device.approve and device.update_attributes(possessor: @req.requestor)
+        DeviceMailer.approval_email(@req.owner, @req.requestor, @req.device).deliver
+        @req.destroy
         format.html { redirect_to requests_path, notice: "You've successfully approved this request and an email has been sent to `#{device.possessor}`" }
       else
         format.html { redirect_to requests_path, notice: "Unable to approve this request" }
@@ -20,12 +21,12 @@ class RequestsController < ApplicationController
   end
 
   def reject
-    @request = Request.find(params[:id])
-    device = @request.device
+    @req = Request.find(params[:id])
+    device = @req.device
 
     respond_to do |format|
       if device.reject
-        @request.destroy
+        @req.destroy
         format.html { redirect_to requests_path, notice: "You've successfully reject this request and an email has been sent to `#{device.possessor}`" }
       else
         format.html { redirect_to requests_path, notice: "Unable to reject this request" }

@@ -1,0 +1,11 @@
+%p= %|Hi #{@requestor},|
+
+%p
+  %b
+    = @owner
+  has approved your request for
+  %b
+    = "#{@device.make} #{@device.model}"
+
+%p
+  Contact the owner in case you haven't received the device yet.

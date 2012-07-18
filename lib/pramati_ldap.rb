@@ -25,6 +25,17 @@ module PramatiLdap
     return []
   end
 
+  def self.get_email(username)
+    ldap = Net::LDAP.new(host: 'ldap.pramati.com', base: "uid=#{username},ou=Employees,dc=pramati,dc=com")
+    ldap.bind
+
+    if ldap.search.blank?
+      nil
+    else
+      ldap.search.first['mail'].first
+    end
+  end
+
   def load_details(username)
   end
 end

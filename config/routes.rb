@@ -12,8 +12,6 @@ DeviceInventory::Application.routes.draw do
 
     member do
       put :ask
-      put :reject
-      post :approve
       post :return
       post :make_unavailable
       post :make_available
@@ -25,6 +23,13 @@ DeviceInventory::Application.routes.draw do
   resources :users do
     collection do
       get :search
+    end
+  end
+
+  resources :requests, only: [:index] do
+    member do
+      put :approve
+      put :reject
     end
   end
 
