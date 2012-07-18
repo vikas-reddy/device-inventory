@@ -1,8 +1,10 @@
 .row-fluid
   .pull-left
     %h2 Listing Devices
+
   .pull-right
     - if is_admin?
+      =link_to 'Export', export_devices_path(:format => :xls)
       %a.btn.btn-primary{href: new_device_path}
         %i.icon-plus.icon-white
         Add Device
@@ -16,9 +18,8 @@
     to add a device.
 - else
   = render 'devices/list'
-
-
-= form_tag import_devices_path, :multipart => true do
+%span.label.label-info Import 
+= form_tag import_devices_path, :class => "well", :multipart => true do
   %table
     %tr
       %td
@@ -28,4 +29,4 @@
         = file_field_tag :device_import_file
     %tr
       %td{:colspan => "2"}
-        = submit_tag 'Submit'
+        = submit_tag 'Import', :class => "btn"
