@@ -23,12 +23,12 @@ end
 group :development do
   gem 'ruby_parser'
   gem 'hpricot'
-  gem 'haml'
 end
 
 gem 'jquery-rails'
 gem 'net-ldap'
 gem 'state_machine'
+gem 'haml'
 
 # Paperclip
 gem 'paperclip'
