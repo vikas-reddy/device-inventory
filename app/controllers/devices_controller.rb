@@ -162,13 +162,15 @@ class DevicesController < ApplicationController
   def ask
     @device = Device.find(params[:id])
 
+    if @device.ask
+      req = Request.create(device_id: @device.id, requestor: current_user, owner: @device.owner)
+      flash.now[:notice] = 'Sent a request successfully.'
+    else
+      flash.now[:error] = 'Unable to add a request.'
+    end
+
     respond_to do |format|
-      if @device.ask
-        req = Request.create(device_id: @device.id, requestor: current_user, owner: @device.owner)
-        format.json { render json: {status: 'success', id: @device.id, notice: 'Sent a request successfully.'} }
-      else
-        format.json { render json: {status: 'failure', notice: 'Unable to add a request.'} }
-      end
+      format.js
     end
   end
 

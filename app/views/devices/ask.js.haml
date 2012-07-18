@@ -1,0 +1,5 @@
+:plain
+  $('.progress').hide()
+  $('.request-button').replaceWith("#{escape_javascript(render 'shared/flashes')}")
+  $('#device-actions-#{@device.id}').html("#{escape_javascript(device_actions(@device))}")
+  $('#waiting-device-#{@device.id}').popover()

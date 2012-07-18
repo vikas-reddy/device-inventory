@@ -19,7 +19,7 @@
         %td= device.state.to_s.titleize
         %td= device.owner
         %td= device.possessor
-        %td.device-actions= device_actions(device)
+        %td.device-actions{id: "device-actions-#{device.id}"}= device_actions(device)
   %tfoot
     %tr
       %td

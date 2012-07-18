@@ -6,7 +6,7 @@
         %i.icon-remove
   .modal-body
 
-    %form.request_device{"accept-charset" => "UTF-8", :action => "/devices/${deviceId}/ask.json", :method => "post", :id => "request_device_${deviceId}", 'data-remote' => true}
+    %form.request_device{"accept-charset" => "UTF-8", :action => "/devices/${deviceId}/ask.js", :method => "post", :id => "request_device_${deviceId}", 'data-remote' => true}
       %div{:style => "margin:0;padding:0;display:inline"}
         %input{:name => "utf8", :type => "hidden", :value => "✓"}/
         %input{:name => "_method", :type => "hidden", :value => "put"}/

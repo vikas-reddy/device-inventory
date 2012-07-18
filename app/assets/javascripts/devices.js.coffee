@@ -53,14 +53,6 @@ $(document).ready (e) ->
       $('.progress').show()
       true
 
-    $('#device-actions').ajaxComplete (e, xhr, options) ->
-      resp = $.parseJSON(xhr.responseText)
-      $('.progress').hide()
-      $('.request-button').replaceWith('<div class="alert alert-info">' + resp.notice + '</div>')
-      if resp.status == 'success'
-        $('#request-device-' + resp.id).addClass 'disabled'
-      true
-
     # Popovers
     $('[rel="popover"]', '#device-list').popover
       placement: 'top'
