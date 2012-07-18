@@ -46,3 +46,7 @@
 .field {
   line-height: 24px;
 }
+
+.export-to-excel {
+  margin-right: 30px;
+}

@@ -1,13 +1,14 @@
 .row-fluid
   .pull-left
     %h2 Listing Devices
-
   .pull-right
     - if is_admin?
-      =link_to 'Export', export_devices_path(:format => :xls)
       %a.btn.btn-primary{href: new_device_path}
         %i.icon-plus.icon-white
         Add Device
+  .pull-right.export-to-excel
+    = link_to 'Export To Excel', export_devices_path(:format => :xls), class: 'btn'
+
 
 %legend
 
