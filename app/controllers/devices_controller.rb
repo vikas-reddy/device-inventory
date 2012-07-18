@@ -165,7 +165,6 @@ class DevicesController < ApplicationController
     respond_to do |format|
       if @device.ask
         req = Request.create(device_id: @device.id, requestor: current_user, owner: @device.owner)
-        DeviceMailer.request_email(req.owner, req.requestor, req.device).deliver
         format.json { render json: {status: 'success', id: @device.id, notice: 'Sent a request successfully.'} }
       else
         format.json { render json: {status: 'failure', notice: 'Unable to add a request.'} }

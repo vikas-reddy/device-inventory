@@ -16,7 +16,7 @@
         %td= device.device_type.try(:name)
         %td= "#{device.os} #{device.os_version}"
         %td= device.project
-        %td= device.state
+        %td= device.state.to_s.titleize
         %td= device.owner
         %td= device.possessor
         %td.device-actions= device_actions(device)
