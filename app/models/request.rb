@@ -1,12 +1,24 @@
 class Request < ActiveRecord::Base
   attr_accessible :device_id, :owner, :requestor
+
+  # Associations
   belongs_to :device
+
+  # Scopes
+  scope :pending, where(state: :pending)
 
   # Callback
   after_create :send_request_email
 
-  def self.count_for(username)
-    Request.where(owner: username).count
+  # State Machine
+  state_machine :state, :initial => :pending do
+    event :reject, :approve do
+      transition :pending => :archived
+    end
+  end
+
+  def self.pending_count(username)
+    Request.pending.where(owner: username).count
   end
 
   private

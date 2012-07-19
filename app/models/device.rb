@@ -6,7 +6,7 @@ class Device < ActiveRecord::Base
 
   # Associations
   has_many :accessories, dependent: :destroy
-  has_one :request
+  has_many :requests
   belongs_to :device_type
   accepts_nested_attributes_for :accessories, allow_destroy: true
 
