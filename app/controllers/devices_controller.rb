@@ -158,7 +158,7 @@ class DevicesController < ApplicationController
     end
   end
 
-  # POST /devices/:id/ask
+  # PUT /devices/:id/ask.js
   def ask
     @device = Device.find(params[:id])
 
@@ -174,14 +174,15 @@ class DevicesController < ApplicationController
     end
   end
 
+  # PUT /devices/:id/receive
   def receive
     @device = Device.find(params[:id])
 
     respond_to do |format|
       if @device.receive
-        format.html { render action: 'show', notice: 'Returned the device successfully. It\'s now available to other users' }
+        format.html { redirect_to @device, notice: 'Returned the device successfully. It\'s now available to other users' }
       else
-        format.html { render action: 'show', notice: 'Unable to receive the device' }
+        format.html { redirect_to @device, notice: 'Unable to receive the device' }
       end
     end
   end
