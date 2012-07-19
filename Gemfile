@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'net-ldap'
 gem 'state_machine'
 gem 'haml'
+gem 'thin'
 
 # Paperclip
 gem 'paperclip'
