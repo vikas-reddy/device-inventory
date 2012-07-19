@@ -26,7 +26,7 @@
                 %li
                   %a{href: requests_path}
                     Requests
-                    %span.badge.badge-important= Request.count_for(current_user)
+                    %span.badge.badge-important= Request.pending_count(current_user)
                 %li= link_to("Sign Out", signout_path, :method => :delete)
               - else
                 %li= link_to 'Sign In', signin_path

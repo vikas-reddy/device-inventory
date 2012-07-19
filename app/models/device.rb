@@ -6,7 +6,7 @@ class Device < ActiveRecord::Base
 
   # Associations
   has_many :accessories, dependent: :destroy
-  has_one :request
+  has_many :requests
   belongs_to :device_type
   accepts_nested_attributes_for :accessories, allow_destroy: true
 
@@ -34,13 +34,13 @@ class Device < ActiveRecord::Base
     end
 
     # Device owner only
-    event :approve do
+    event :assign do
       transition :waiting => :in_use
     end
-    event :reject do
+    event :deny do
       transition :waiting => :available
     end
-    event :return do
+    event :receive do
       transition :in_use => :available
     end
 
@@ -64,4 +64,8 @@ class Device < ActiveRecord::Base
     "#{os} (#{os_version})"
   end
 
+  def assign_to(u)
+    self.possessor = u
+    self.assign
+  end
 end

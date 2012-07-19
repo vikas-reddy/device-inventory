@@ -34,7 +34,7 @@
         - else
           = "#{@device.possessor}"
           - if @device.in_use? and (is_admin? or is_owner?(@device))
-            = link_to 'Return', return_device_path(@device), method: :post, class: 'btn btn-primary btn-mini'
+            = link_to 'Receive', receive_device_path(@device), method: :put, class: 'btn btn-primary btn-mini'
     .span4
       .field
         %b Mac Address:
