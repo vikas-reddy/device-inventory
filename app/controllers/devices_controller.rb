@@ -44,39 +44,40 @@ class DevicesController < ApplicationController
   def import
     if params[:device_import_file]
       imp_filename = params[:device_import_file].tempfile.path
-      Spreadsheet.open(imp_filename) do |device|
-        device.worksheet('Sheet1').each do |row|
-          d = Device.new
-          #break if row[0].nil?
-          d.serial_num = row[1]
-          d.make = row[2]
-          d.model = row[3]
-          d.os = row[4]
-          d.os_version = row[5]
-          d.environment = row[6]
-          d.project = row[7]
-          d.service_provider = row[8]
-          d.phone_num = row[9].to_i.to_s
-          d.mac_addr = row[10]
-          d.ip_addr = row[11]
-          d.property_of = row[14]
-          d.status = "available"
-          puts "######################################"
-          logger.info d.inspect  
-          puts "######################################"
-          d.save
-          puts "######################################"
-          logger.info d.errors.inspect  
-          puts "######################################"
+      Spreadsheet.open(imp_filename) do |spreadsheet|
+        ws = spreadsheet.worksheets.first
+
+        # No worksheets
+        if ws.nil?
+          flash[:error] = 'No worksheets in the Excel sheet provided'
+        else
+          ws.each do |row|
+            d = Device.new
+            #break if row[0].nil?
+            d.serial_num       = row[1]
+            d.make             = row[2]
+            d.model            = row[3]
+            d.os               = row[4]
+            d.os_version       = row[5]
+            d.environment      = row[6]
+            d.project          = row[7]
+            d.service_provider = row[8]
+            d.phone_num        = ( row[9].blank? ? nil : row[9].to_i )
+            d.mac_addr         = row[10]
+            d.ip_addr          = row[11]
+            d.property_of      = row[14]
+            d.state            = :available
+            d.save
+          end
+          flash[:notice] = 'Import successful, new records added to the database.'
         end
       end
-      flash.now[:message]="Import Successful, new records added to data base"
     else
-      flash.now[:notice] = "No filename given"
+      flash[:error] = 'No file uploaded'
     end
+
     respond_to do |format|
-      format.html { redirect_to devices_url }
-      format.json { head :no_content }
+      format.html { redirect_to devices_path }
     end
   end
 
