@@ -10,7 +10,7 @@ class RequestsController < ApplicationController
     device = @req.device
 
     respond_to do |format|
-      if device.approve and device.update_attributes(possessor: @req.requestor)
+      if device.assign_to(@req.requestor)
         DeviceMailer.approval_email(@req.owner, @req.requestor, @req.device).deliver
         @req.destroy
         format.html { redirect_to requests_path, notice: "Successfully approved the request and an email has been sent to `#{device.possessor}`" }
@@ -25,7 +25,7 @@ class RequestsController < ApplicationController
     device = @req.device
 
     respond_to do |format|
-      if device.reject
+      if device.deny
         @req.destroy
         format.html { redirect_to requests_path, notice: "Successfully rejected the request" }
       else

@@ -174,14 +174,14 @@ class DevicesController < ApplicationController
     end
   end
 
-  def return
+  def receive
     @device = Device.find(params[:id])
 
     respond_to do |format|
-      if @device.return
+      if @device.receive
         format.html { render action: 'show', notice: 'Returned the device successfully. It\'s now available to other users' }
       else
-        format.html { render action: 'show', notice: 'Unable to return the device' }
+        format.html { render action: 'show', notice: 'Unable to receive the device' }
       end
     end
   end

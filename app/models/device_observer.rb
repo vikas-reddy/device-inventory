@@ -3,7 +3,7 @@ class DeviceObserver < ActiveRecord::Observer
     # Send email to owner
   end
 
-  def before_return(device, transition)
+  def before_receive(device, transition)
     device.possessor = nil
   end
 end

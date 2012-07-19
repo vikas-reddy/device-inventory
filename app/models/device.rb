@@ -34,13 +34,13 @@ class Device < ActiveRecord::Base
     end
 
     # Device owner only
-    event :approve do
+    event :assign do
       transition :waiting => :in_use
     end
-    event :reject do
+    event :deny do
       transition :waiting => :available
     end
-    event :return do
+    event :receive do
       transition :in_use => :available
     end
 
@@ -64,4 +64,8 @@ class Device < ActiveRecord::Base
     "#{os} (#{os_version})"
   end
 
+  def assign_to(u)
+    self.possessor = u
+    self.assign
+  end
 end

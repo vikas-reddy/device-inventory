@@ -12,9 +12,9 @@ DeviceInventory::Application.routes.draw do
 
     member do
       put :ask
-      post :return
-      post :make_unavailable
-      post :make_available
+      put :receive
+      put :make_unavailable
+      put :make_available
     end
 
     resources :accessories
