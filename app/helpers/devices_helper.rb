@@ -6,7 +6,7 @@ module DevicesHelper
     when :waiting
       link_to(
         'Waiting', '#device-actions',
-        :class => 'btn btn-mini btn-primary waiting-device disabled', :id => "waiting-device-#{device.id}",
+        :class => 'btn btn-mini waiting-device disabled', :id => "waiting-device-#{device.id}",
         'rel' => 'popover', 'data-content' => "This device has already been requested by `#{device.requests.pending.first.try(:requestor)}`",
         'data-original-title' => 'Waiting Approval'
       )

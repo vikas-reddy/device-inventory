@@ -21,18 +21,19 @@
               %span.caret
             %ul.dropdown-menu
               - if user_signed_in?
-                - if is_admin?
-                  %li= link_to "Dashboard", admin_dashboard_path
-                %li
-                  %a{href: requests_path}
-                    Requests
-                    %span.badge.badge-important= Request.pending_count(current_user)
                 %li= link_to("Sign Out", signout_path, :method => :delete)
               - else
                 %li= link_to 'Sign In', signin_path
           .nav-collapse
             %ul.nav.pull-left
               %li= link_to 'Home', root_path
+              - if user_signed_in?
+                - if is_admin?
+                  %li= link_to "Dashboard", admin_dashboard_path
+                %li
+                  %a{href: requests_path}
+                    Requests
+                    %span.badge.badge-important= Request.pending_count(current_user)
             %ul.nav.pull-right
               %li
                 %form.navbar-form.pull-right{action: search_devices_path}
