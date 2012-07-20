@@ -13,4 +13,12 @@ class DeviceObserver < ActiveRecord::Observer
   def after_reject(req, transition)
     req.device.deny
   end
+
+  def before_make_available(device, transition)
+    device.possessor = nil
+  end
+
+  def before_make_unavailable(device, transition)
+    device.possessor = nil
+  end
 end

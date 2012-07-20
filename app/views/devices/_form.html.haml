@@ -43,12 +43,6 @@
           = f.text_field :project
           %span.help-block
             = @device.errors[:project].join(", ")
-      .control-group{class: @device.errors[:state].empty? ? '' : 'error'}
-        = f.label :state, class: 'control-label'
-        .controls
-          = select_tag(:state, options_for_select([]))
-          %span.help-block
-            = @device.errors[:state].join(", ")
       .control-group{class: @device.errors[:owner].empty? ? '' : 'error'}
         = f.label :owner, class: 'control-label'
         .controls
