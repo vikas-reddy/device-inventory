@@ -1,8 +1,8 @@
-%p= %|Hi #{@requestor},|
+%p= %|Hi #{@requestor_name},|
 
 %p
   %b
-    = @owner
+    = @owner_name
   has approved your request for
   %b
     = "#{@device.make} #{@device.model}"

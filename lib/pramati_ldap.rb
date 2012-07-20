@@ -1,6 +1,6 @@
 module PramatiLdap
   def self.authenticate(username, password)
-    @ldap = Net::LDAP.new(
+    ldap = Net::LDAP.new(
       host: 'ldap.pramati.com',
       auth: {
         method: :simple,
@@ -8,7 +8,7 @@ module PramatiLdap
         password: password
       }
     )
-    @ldap.bind
+    ldap.bind
   end
 
   def self.search(q)
@@ -25,14 +25,15 @@ module PramatiLdap
     return []
   end
 
-  def self.get_email(username)
+  def self.get_details(username)
     ldap = Net::LDAP.new(host: 'ldap.pramati.com', base: "uid=#{username},ou=Employees,dc=pramati,dc=com")
     ldap.bind
 
     if ldap.search.blank?
       nil
     else
-      ldap.search.first['mail'].first
+      res = ldap.search.first
+      [res[:cn].try(:first), res[:mail].try(:first)]
     end
   end
 
