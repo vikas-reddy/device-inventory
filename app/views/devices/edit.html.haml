@@ -9,7 +9,10 @@
         Editing
         = device_name(@device)
     .pull-right
-      = link_to 'Delete', @device, method: :delete, class: 'btn btn-medium btn-warning', data: {confirm: 'Are you sure?'}
+      - if @device.not_available?
+        = link_to 'Make Available', make_available_device_path(@device), method: :put, class: 'btn btn-primary', data: {confirm: 'Are you sure you want to make this device available?'}
+      - else
+        = link_to 'Make Unavailable', make_unavailable_device_path(@device), method: :put, class: 'btn btn-warning', data: {confirm: 'Are you sure you want to make this device unavailable?'}
 
   .row-fluid
     = render 'form'

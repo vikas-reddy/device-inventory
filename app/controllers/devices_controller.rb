@@ -189,9 +189,27 @@ class DevicesController < ApplicationController
   end
 
   def make_unavailable
+    @device = Device.find(params[:id])
+
+    respond_to do |format|
+      if @device.make_unavailable
+        format.html { redirect_to edit_device_path, notice: 'The device is now marked unavailable to other users.' }
+      else
+        format.html { redirect_to edit_device_path, error: 'Unable to mark the device as unavailable.' }
+      end
+    end
   end
 
   def make_available
+    @device = Device.find(params[:id])
+
+    respond_to do |format|
+      if @device.make_available
+        format.html { redirect_to edit_device_path, notice: 'The device is now marked available to other users.' }
+      else
+        format.html { redirect_to edit_device_path, error: 'Unable to mark the device as available.' }
+      end
+    end
   end
 
   # DELETE /devices/1
