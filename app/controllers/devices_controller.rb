@@ -20,23 +20,53 @@ class DevicesController < ApplicationController
   def export
     @devices = Device.all
     respond_to do |format|
-      format.pdf
-      format.xls {
-        devices = Spreadsheet::Workbook.new
-        list = devices.create_worksheet :name => 'devices_list'
-        list.row(0).concat %w{Make Model SerialNumber Os OsVersion Environment Project Status Provider Phone MACID IPADDR Property Of AssignedTo} 
+      format.xls do
+        workbook = Spreadsheet::Workbook.new
+        worksheet = workbook.create_worksheet(name: 'Devices List')
+        worksheet.row(0).concat [
+          'Make',
+          'Model',
+          'Serial Number',
+          'OS',
+          'OS Version',
+          'Environment',
+          'Project',
+          'Status',
+          'Provider',
+          'Phone',
+          'MAC Address',
+          'IP Address',
+          'Owner',
+          'Possessor',
+          'Property Of'
+        ] 
         @devices.each_with_index { |device, i|
-          list.row(i+1).push device.make,device.model,device.serial_num,device.os,device.os_version,device.environment,device.project,device.state,
-            device.service_provider,device.phone_num,device.mac_addr,device.ip_addr,device.property_of
+          worksheet.row(i+1).push(
+            device.make,
+            device.model,
+            device.serial_num,
+            device.os,
+            device.os_version,
+            device.environment,
+            device.project,
+            device.state,
+            device.service_provider,
+            device.phone_num,
+            device.mac_addr,
+            device.ip_addr,
+            device.owner,
+            device.possessor,
+            device.property_of
+          )
         }
-        header_format = Spreadsheet::Format.new :color => :green, :weight => :bold
-        list.row(0).default_format = header_format
+        header_format = Spreadsheet::Format.new(color: :green, weight: :bold)
+        worksheet.row(0).default_format = header_format
         #output to blob object
         blob = StringIO.new('')
-        devices.write(blob)
+        workbook.write(blob)
         #respond with blob object as a file
-        send_data(blob.string, :type => "application/ms-excel", :filename => "device_list.xls")
-      }
+        send_data(blob.string, :type => "application/ms-excel", :filename => "Mobile Devices List.xls")
+      end
     end
   end
   
@@ -54,18 +84,18 @@ class DevicesController < ApplicationController
           ws.each do |row|
             d = Device.new
             #break if row[0].nil?
-            d.serial_num       = row[1]
-            d.make             = row[2]
-            d.model            = row[3]
-            d.os               = row[4]
-            d.os_version       = row[5]
-            d.environment      = row[6]
-            d.project          = row[7]
-            d.service_provider = row[8]
+            d.serial_num       = row[1].strip
+            d.make             = row[2].strip
+            d.model            = row[3].strip
+            d.os               = row[4].strip
+            d.os_version       = row[5].strip
+            d.environment      = row[6].strip
+            d.project          = row[7].strip
+            d.service_provider = row[8].strip
             d.phone_num        = ( row[9].blank? ? nil : row[9].to_i )
-            d.mac_addr         = row[10]
-            d.ip_addr          = row[11]
-            d.property_of      = row[14]
+            d.mac_addr         = row[10].strip
+            d.ip_addr          = row[11].strip
+            d.property_of      = row[14].strip
             d.state            = :available
             d.save
           end
