@@ -1,5 +1,5 @@
 class DeviceMailer < ActionMailer::Base
-  default from: "admin@devices-inventory.com"
+  default from: "devices@pramati.com"
 
   def request_email(owner, requestor, device)
     @owner_email     = PramatiLdap::get_email(owner)
