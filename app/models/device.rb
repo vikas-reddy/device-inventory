@@ -11,8 +11,8 @@ class Device < ActiveRecord::Base
   accepts_nested_attributes_for :accessories, allow_destroy: true
 
   # Validations
-  validates :mac_addr, format: {with: %r|^(\h\h:){5}\h\h$|, message: "should be 48-bit hexadecimal string", allow_nil: true}
-  validates :phone_num, format: {with: %r|^[1-9]\d{9}$|, message: "should be 10-digit", allow_nil: true}
+  validates :mac_addr, format: {with: %r|^(\h\h:){5}\h\h$|, message: "should be 48-bit hexadecimal string", allow_blank: true}
+  validates :phone_num, format: {with: %r|^[1-9]\d{9}$|, message: "should be 10-digit", allow_blank: true}
   validates :serial_num, uniqueness: true, presence: true
 
   # Paperclip
