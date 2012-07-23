@@ -16,4 +16,13 @@ class DeviceMailer < ActionMailer::Base
 
     mail(to: @requestor_email, subject: "Request for #{@device.make} #{@device.model}")
   end
+
+  def rejection_email(owner, requestor, device, reason)
+    @owner_name, @owner_email         = PramatiLdap::get_details(owner)
+    @requestor_name, @requestor_email = PramatiLdap::get_details(requestor)
+    @device                           = device
+    @reason                           = reason
+
+    mail(to: @requestor_email, subject: "Request for #{@device.make} #{@device.model} rejected!")
+  end
 end

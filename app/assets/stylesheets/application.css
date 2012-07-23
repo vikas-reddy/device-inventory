@@ -56,3 +56,11 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+#reject-form .reason {
+  margin-top: 20px;
+}
+
+#reject-form .centered-info {
+  margin-bottom: 20px;
+}

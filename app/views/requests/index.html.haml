@@ -3,7 +3,7 @@
 - if @requests.empty?
   No pending device requests at the moment.
 - else
-  %table.table.table-striped
+  %table.table.table-striped#requests-list
     %thead
       %tr
         %th Device Name
@@ -11,9 +11,13 @@
         %th
     - @requests.each do |req|
       %tbody
-        %tr
+        %tr{id: "request-row-#{req.id}", class: "request-row"}
           %td= link_to device_name(req.device), device_path(req.device)
-          %td= req.requestor
+          %td{id: "requestor-#{req.id}"}
+            = req.requestor
           %td
             = link_to 'Approve', approve_request_path(req), method: :put, class: 'btn btn-primary'
-            = link_to 'Reject', reject_request_path(req), method: :put, class: 'btn btn-warning'
+            = link_to 'Reject', reject_request_path(req), id: "reject-request-#{req.id}", class: 'btn btn-warning reject-request'
+
+#reject-form.modal.fade
+= render 'reject_form_template'

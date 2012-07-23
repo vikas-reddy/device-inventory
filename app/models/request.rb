@@ -17,6 +17,11 @@ class Request < ActiveRecord::Base
     end
   end
 
+  def reject_with_reason(reason)
+    self.reject
+    DeviceMailer.rejection_email(self.owner, self.requestor, self.device, reason).deliver
+  end
+
   def self.pending_count(username)
     Request.pending.where(owner: username).count
   end

@@ -1,0 +1,13 @@
+%p= %|Hi #{@requestor_name},|
+
+%p
+  %b
+    = @owner_name
+  has rejected your request for
+  %b
+    = "#{@device.make} #{@device.model}"
+
+%p
+  The reason being:
+  %br/
+  = @reason

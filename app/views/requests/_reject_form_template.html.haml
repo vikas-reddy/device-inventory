@@ -1,0 +1,26 @@
+%script#reject-form-template{type: 'text/x-jquery-tmpl'}
+  .modal-header
+    %h3
+      Reject the request from ${requestor}
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %i.icon-remove
+  .modal-body
+
+    %form.reject_request.form.form-vertical{"accept-charset" => "UTF-8", :action => "/requests/${requestId}/reject", :method => "post", :id => "reject_request_${requestId}"}
+      %div{:style => "margin:0;padding:0;display:inline"}
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+        %input{:name => "_method", :type => "hidden", :value => "put"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}/
+      %div
+        You're rejecting a request raised by ${requestor}. It'd be great if you could provide with the reason for rejection, which would in turn be intimated to the user via email.
+      .reason
+        = label_tag 'reason', 'Reason for rejection'
+        = text_area_tag 'reason'
+      %p.centered-info
+        %input.reject-button.btn.btn-warning{:type => :submit, :value => 'Reject'}
+        .progress.progress-striped.active.hide
+          .bar{style: 'width: 100%'}
+  .modal-footer
+    .action-buttons
+      %a.btn{"data-dismiss" => "modal"} Close
+

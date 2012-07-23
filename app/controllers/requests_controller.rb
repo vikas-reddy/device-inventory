@@ -21,7 +21,7 @@ class RequestsController < ApplicationController
     @req = Request.find(params[:id])
 
     respond_to do |format|
-      if @req.reject
+      if @req.reject_with_reason(params[:reason])
         format.html { redirect_to requests_path, notice: "Successfully rejected the request" }
       else
         format.html { redirect_to requests_path, notice: "Unable to reject the request" }
