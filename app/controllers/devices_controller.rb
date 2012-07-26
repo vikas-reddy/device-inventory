@@ -126,6 +126,7 @@ class DevicesController < ApplicationController
   # GET /devices/1.json
   def show
     @device = Device.find(params[:id])
+    @events = Event.where(:device_id => params[:id])
     @accessory = Accessory.new
 
     respond_to do |format|
@@ -162,6 +163,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
+        Event.record_event(@device.id, "Device has been created")
         format.html { redirect_to @device, notice: 'Device was successfully created.' }
         format.json { render json: @device, status: :created, location: @device }
       else
@@ -176,9 +178,11 @@ class DevicesController < ApplicationController
   # PUT /devices/1.json
   def update
     @device = Device.find(params[:id])
-
+    update_owner = @device.owner!= params[:device][:owner] ? true : false
+    message = update_owner ? "Device owner has been changed from #{@device.owner} to #{params[:device][:owner]}" : "Device has been updated"
     respond_to do |format|
       if @device.update_attributes(params[:device])
+        Event.record_event(@device.id, message)
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
         format.json { head :no_content }
       else
@@ -211,6 +215,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.receive
+        Event.record_event(@device.id, "Device has been returned")
         format.html { redirect_to @device, notice: 'Returned the device successfully. It\'s now available to other users' }
       else
         format.html { redirect_to @device, notice: 'Unable to receive the device' }
@@ -223,6 +228,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.make_unavailable
+        Event.record_event(@device.id, "Device has been made unavailable to other users")
         format.html { redirect_to edit_device_path, notice: 'The device is now marked unavailable to other users.' }
       else
         format.html { redirect_to edit_device_path, error: 'Unable to mark the device as unavailable.' }
@@ -235,6 +241,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.make_available
+        Event.record_event(@device.id, "Device has been made available to other users")
         format.html { redirect_to edit_device_path, notice: 'The device is now marked available to other users.' }
       else
         format.html { redirect_to edit_device_path, error: 'Unable to mark the device as available.' }
