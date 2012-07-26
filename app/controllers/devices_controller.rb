@@ -178,7 +178,9 @@ class DevicesController < ApplicationController
   # PUT /devices/1.json
   def update
     @device = Device.find(params[:id])
-    update_owner = @device.owner!= params[:device][:owner] ? true : false
+    if params[:device][:owner]!= ' '
+      update_owner = @device.owner!= params[:device][:owner] ? true : false
+    end
     message = update_owner ? "Device owner has been changed from #{@device.owner} to #{params[:device][:owner]}" : "Device has been updated"
     respond_to do |format|
       if @device.update_attributes(params[:device])
