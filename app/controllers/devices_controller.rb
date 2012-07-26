@@ -84,20 +84,21 @@ class DevicesController < ApplicationController
           ws.each do |row|
             d = Device.new
             #break if row[0].nil?
-            d.serial_num       = row[1].strip
-            d.make             = row[2].strip
-            d.model            = row[3].strip
-            d.os               = row[4].strip
-            d.os_version       = row[5].strip
-            d.environment      = row[6].strip
-            d.project          = row[7].strip
-            d.service_provider = row[8].strip
+            d.serial_num       = row[1]
+            d.make             = row[2]
+            d.model            = row[3]
+            d.os               = row[4]
+            d.os_version       = row[5]
+            d.environment      = row[6]
+            d.project          = row[7]
+            d.service_provider = row[8]
             d.phone_num        = ( row[9].blank? ? nil : row[9].to_i )
-            d.mac_addr         = row[10].strip
-            d.ip_addr          = row[11].strip
-            d.property_of      = row[14].strip
+            d.mac_addr         = row[10]
+            d.ip_addr          = row[11]
+            d.property_of      = row[14]
             d.state            = :available
             d.save
+            Event.record_event(d.id, "Device has been imported")
           end
           flash[:notice] = 'Import successful, new records added to the database.'
         end
