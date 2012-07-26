@@ -95,6 +95,8 @@ class DevicesController < ApplicationController
             d.phone_num        = ( row[9].blank? ? nil : row[9].to_i )
             d.mac_addr         = row[10]
             d.ip_addr          = row[11]
+            d.possessor        = row[12]
+            d.owner            = row[13]
             d.property_of      = row[14]
             d.state            = :available
             d.save
@@ -179,9 +181,7 @@ class DevicesController < ApplicationController
   # PUT /devices/1.json
   def update
     @device = Device.find(params[:id])
-    if params[:device][:owner]!= ' '
-      update_owner = @device.owner!= params[:device][:owner] ? true : false
-    end
+    update_owner = @device.owner&&@device.owner!= params[:device][:owner] ? true : false
     message = update_owner ? "Device owner has been changed from #{@device.owner} to #{params[:device][:owner]}" : "Device has been updated"
     respond_to do |format|
       if @device.update_attributes(params[:device])
