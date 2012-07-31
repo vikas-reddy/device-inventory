@@ -9,7 +9,10 @@ class DevicesController < ApplicationController
   # GET /devices.json
   #
   def index
-    @devices = Device.all(include: :device_type)
+    @devices = Device.find(:all, :conditions => ["owner= ?", current_user], :include => :device_type) 
+    if @devices.empty?
+      @devices = Device.all(include: :device_type)
+    end
     respond_to do |format|
       format.html # index.html.erb 
       format.json { render json: @devices }
