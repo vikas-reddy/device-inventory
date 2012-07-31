@@ -3,7 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready (e) ->
-
+  $('#dp3').datepicker(format: "dd-mm-yyyy").on "click", (e) ->
+    $(this).blur()
+    $(this).datepicker "hide"
   # Handlers for requests-list table
   if $('#requests-list').length > 0
 
