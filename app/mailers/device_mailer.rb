@@ -22,7 +22,7 @@ class DeviceMailer < ActionMailer::Base
     @requestor_name, @requestor_email = PramatiLdap::get_details(requestor)
     @device                           = device
 
-    mail(to: @owner_name, subject: "Ownership Change :You are made owner to the device #{@device.make} #{@device.model} by #{current_user}")
+    mail(to: @requestor_name, subject: "Ownership Change :You are made owner to the device #{@device.make} #{@device.model} by #{@owner_name}")
   end
 
   def rejection_email(owner, requestor, device, reason)
