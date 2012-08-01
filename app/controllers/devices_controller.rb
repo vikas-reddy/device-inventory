@@ -186,6 +186,10 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
     update_owner = @device.owner&&@device.owner!= params[:device][:owner] ? true : false
     message = update_owner ? "Device owner has been changed from #{@device.owner} to #{params[:device][:owner]}" : "Device has been updated"
+    if update_owner
+      DeviceMailer.ownership_email(params[:device][:owner],current_user, @device).deliver
+    end
+
     respond_to do |format|
       if @device.update_attributes(params[:device])
         Event.record_event(@device.id, message)
