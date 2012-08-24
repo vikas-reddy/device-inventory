@@ -28,6 +28,10 @@ group :development do
   gem 'pry-rails'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 gem 'jquery-rails'
 gem 'net-ldap'
 gem 'state_machine'
