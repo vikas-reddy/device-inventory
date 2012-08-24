@@ -4,6 +4,7 @@
       %th Model
       %th Type
       %th OS
+      %th Serial 
       %th Project
       %th State
       %th Owner
@@ -15,6 +16,7 @@
         %td= "#{device.make} #{device.model}"
         %td= device.device_type.try(:name)
         %td= "#{device.os} #{device.os_version}"
+        %td= device.serial_num
         %td= device.project
         %td= state_label(device)
         %td= device.owner
@@ -28,6 +30,8 @@
         %input.search_init{:name => "search_type", :type => "text", :value => "Search Type"}/
       %td
         %input.search_init{:name => "search_os", :type => "text", :value => "Search OS"}/
+      %td
+        %input.search_init{:name => "search_serial", :type => "text", :value => "Search Serial"}/
       %td
         %input.search_init{:name => "search_project", :type => "text", :value => "Search Project"}/
       %td

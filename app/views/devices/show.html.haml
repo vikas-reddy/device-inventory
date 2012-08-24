@@ -58,3 +58,14 @@
 = render 'accessories/list'
 
 %h3 Events
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Event Type
+      %th Created At
+  %tbody
+    - @events.each do |ev|
+      %tr
+        %td= ev.event_type 
+        %td= ev.created_at
+    

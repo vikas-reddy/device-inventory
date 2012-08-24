@@ -9,7 +9,10 @@ class DevicesController < ApplicationController
   # GET /devices.json
   #
   def index
-    @devices = Device.all(include: :device_type)
+    @devices = Device.find(:all, :conditions => ["owner= ?", current_user], :include => :device_type) 
+    if @devices.empty?
+      @devices = Device.all(include: :device_type)
+    end
     respond_to do |format|
       format.html # index.html.erb 
       format.json { render json: @devices }
@@ -84,20 +87,23 @@ class DevicesController < ApplicationController
           ws.each do |row|
             d = Device.new
             #break if row[0].nil?
-            d.serial_num       = row[1].strip
-            d.make             = row[2].strip
-            d.model            = row[3].strip
-            d.os               = row[4].strip
-            d.os_version       = row[5].strip
-            d.environment      = row[6].strip
-            d.project          = row[7].strip
-            d.service_provider = row[8].strip
+            d.serial_num       = row[1]
+            d.make             = row[2]
+            d.model            = row[3]
+            d.os               = row[4]
+            d.os_version       = row[5]
+            d.environment      = row[6]
+            d.project          = row[7]
+            d.service_provider = row[8]
             d.phone_num        = ( row[9].blank? ? nil : row[9].to_i )
-            d.mac_addr         = row[10].strip
-            d.ip_addr          = row[11].strip
-            d.property_of      = row[14].strip
+            d.mac_addr         = row[10]
+            d.ip_addr          = row[11]
+            d.possessor        = row[12]
+            d.owner            = row[13]
+            d.property_of      = row[14]
             d.state            = :available
             d.save
+            Event.record_event(d.id, "Device has been imported")
           end
           flash[:notice] = 'Import successful, new records added to the database.'
         end
@@ -126,6 +132,7 @@ class DevicesController < ApplicationController
   # GET /devices/1.json
   def show
     @device = Device.find(params[:id])
+    @events = Event.where(:device_id => params[:id])
     @accessory = Accessory.new
 
     respond_to do |format|
@@ -162,6 +169,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
+        Event.record_event(@device.id, "Device has been created")
         format.html { redirect_to @device, notice: 'Device was successfully created.' }
         format.json { render json: @device, status: :created, location: @device }
       else
@@ -176,9 +184,15 @@ class DevicesController < ApplicationController
   # PUT /devices/1.json
   def update
     @device = Device.find(params[:id])
+    update_owner = @device.owner&&@device.owner!= params[:device][:owner] ? true : false
+    message = update_owner ? "Device owner has been changed from #{@device.owner} to #{params[:device][:owner]}" : "Device has been updated"
+    if update_owner
+      DeviceMailer.ownership_email(current_user,params[:device][:owner], @device).deliver
+    end
 
     respond_to do |format|
       if @device.update_attributes(params[:device])
+        Event.record_event(@device.id, message)
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
         format.json { head :no_content }
       else
@@ -211,6 +225,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.receive
+        Event.record_event(@device.id, "Device has been returned")
         format.html { redirect_to @device, notice: 'Returned the device successfully. It\'s now available to other users' }
       else
         format.html { redirect_to @device, notice: 'Unable to receive the device' }
@@ -223,6 +238,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.make_unavailable
+        Event.record_event(@device.id, "Device has been made unavailable to other users")
         format.html { redirect_to edit_device_path, notice: 'The device is now marked unavailable to other users.' }
       else
         format.html { redirect_to edit_device_path, error: 'Unable to mark the device as unavailable.' }
@@ -235,6 +251,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.make_available
+        Event.record_event(@device.id, "Device has been made available to other users")
         format.html { redirect_to edit_device_path, notice: 'The device is now marked available to other users.' }
       else
         format.html { redirect_to edit_device_path, error: 'Unable to mark the device as available.' }

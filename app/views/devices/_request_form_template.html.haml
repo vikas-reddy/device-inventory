@@ -14,6 +14,10 @@
       %div
         By requesting this device, an email is sent out to the owner of the device, who will in turn approve your request. Are you sure you want to send a request?
       %p.centered-info
+      #dp3.input-append.date{"data-date" => "12-02-2012", "data-date-format" => "dd-mm-yyyy"}
+        %input.span2{:size => "16", :type => "text", :value => "12-02-2012"}
+          %span.add-on
+            %i.icon-th
         %input.request-button.btn.btn-primary{:type => :submit, :value => 'Request'}
         .progress.progress-striped.active.hide
           .bar{style: 'width: 100%'}
