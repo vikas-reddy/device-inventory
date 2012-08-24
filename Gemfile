@@ -24,6 +24,8 @@ group :development do
   gem 'ruby_parser'
   gem 'hpricot'
   gem 'letter_opener'
+  gem 'wirble'
+  gem 'pry-rails'
 end
 
 gem 'jquery-rails'
@@ -32,12 +34,9 @@ gem 'state_machine'
 gem 'haml'
 gem 'thin'
 
-# Paperclip
 gem 'paperclip'
 gem "aws-s3"
 gem "aws-sdk"
-
-#Export Excel
 gem 'spreadsheet'
 
 #Audit Logging for Devices Model using Paper_Trail
