@@ -24,6 +24,8 @@ group :development do
   gem 'ruby_parser'
   gem 'hpricot'
   gem 'letter_opener'
+  gem 'wirble'
+  gem 'pry-rails'
 end
 
 gem 'jquery-rails'
