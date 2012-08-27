@@ -1,4 +1,5 @@
 class DeviceMailer < ActionMailer::Base
+  add_template_helper(ApplicationHelper)
   default from: "devices@pramati.com"
 
   def request_email(owner, requestor, device)

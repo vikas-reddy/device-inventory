@@ -8,6 +8,7 @@
       %tr
         %th Device Name
         %th Requested By
+        %th Date
         %th
     - @requests.each do |req|
       %tbody
@@ -15,6 +16,7 @@
           %td= link_to device_name(req.device), device_path(req.device)
           %td{id: "requestor-#{req.id}"}
             = req.requestor
+          %td= request_datespan(req)
           %td
             = link_to 'Approve', approve_request_path(req), method: :put, class: 'btn btn-primary'
             = link_to 'Reject', reject_request_path(req), id: "reject-request-#{req.id}", class: 'btn btn-warning reject-request'

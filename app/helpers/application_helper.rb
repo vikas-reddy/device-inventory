@@ -31,4 +31,8 @@ module ApplicationHelper
   def format_date(d)
     d.strftime('%d-%m-%Y')
   end
+
+  def request_datespan(req)
+    %{#{req.from_date} to #{req.to_date.nil? ? 'NONE' : req.to_date}} if req.is_a?(Request)
+  end
 end
