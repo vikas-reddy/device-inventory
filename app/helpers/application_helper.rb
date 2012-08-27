@@ -24,7 +24,9 @@ module ApplicationHelper
                     when :not_available
                       'label-important'
                     end
-      content_tag(:span, device.state.to_s.titleize, class: "label #{label_class}")
+      content_tag(:span, class: "label #{label_class}") do
+        device.in_use? ? device.possessor : device.state.to_s.titleize
+      end
     end
   end
 

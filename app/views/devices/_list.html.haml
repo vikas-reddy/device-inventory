@@ -6,9 +6,8 @@
       %th OS
       %th Serial 
       %th Project
-      %th State
       %th Owner
-      %th Is With
+      %th Availability
       %th
   %tbody
     - @devices.each do |device|
@@ -18,9 +17,9 @@
         %td= "#{device.os} #{device.os_version}"
         %td= device.serial_num
         %td= device.project
-        %td= state_label(device)
         %td= device.owner
-        %td= device.possessor
+        %td
+          = state_label(device)
         %td.device-actions{id: "device-actions-#{device.id}"}= device_actions(device)
   %tfoot
     %tr
@@ -34,8 +33,6 @@
         %input.search_init{:name => "search_serial", :type => "text", :value => "Search Serial"}/
       %td
         %input.search_init{:name => "search_project", :type => "text", :value => "Search Project"}/
-      %td
-        %input.search_init{:name => "search_state", :type => "text", :value => "Search State"}/
       %td
       %td
       %td
