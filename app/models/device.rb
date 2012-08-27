@@ -66,4 +66,15 @@ class Device < ActiveRecord::Base
     self.possessor = u
     self.assign
   end
+
+  def self.list_for(u)
+    devices = arel_table
+    owned_devices = devices.where(devices[:owner].eq(u)).project('devices.*')
+    other_devices = devices.where(devices[:owner].eq(u).not).project('devices.*')
+
+    # TODO: refactor this!
+    # Arel is not producing correct union syntax for UNION. It's surround the whole
+    # select by braces ( ).
+    find_by_sql(owned_devices.union(other_devices).to_sql.delete('()'))
+  end
 end

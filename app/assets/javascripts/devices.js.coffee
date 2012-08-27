@@ -8,9 +8,11 @@ $(document).ready (e) ->
   # Device index and search results pages
   if($('#device-list').length > 0)
 
-    oTable = $("#device-list").dataTable(oLanguage:
-      sSearch: "Search all columns:"
-    )
+    oTable = $("#device-list").dataTable
+      oLanguage:
+        sSearch: "Search all columns:"
+      aaSorting: []
+
     $("tfoot input").keyup ->
       oTable.fnFilter @value, $("tfoot input").index(this)
 
