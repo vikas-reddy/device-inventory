@@ -6,6 +6,10 @@
   has requested
   %b
     = "#{@device.make} #{@device.model}"
-  from you.
+  from you... for the period starting from '
+  = @device.pending_request.try(:from_date)
+  ' to '
+  = @device.pending_request.try(:to_date)
+  '.
 
 %p Go to your requests page in the application and approve/reject this request.

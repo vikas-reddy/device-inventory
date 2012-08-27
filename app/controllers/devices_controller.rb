@@ -198,8 +198,17 @@ class DevicesController < ApplicationController
   def ask
     @device = Device.find(params[:id])
 
-    if @device.ask
-      req = Request.create(device_id: @device.id, requestor: current_user, owner: @device.owner)
+    ActiveRecord::Base.transaction do
+      @device.ask
+      req = @device.requests.build(params[:request]) do |req|
+        req.owner     = @device.owner
+        req.requestor = current_user
+      end
+      req.save!
+      @asked = true
+    end
+
+    if @asked
       flash.now[:notice] = 'Sent a request successfully.'
     else
       flash.now[:error] = 'Unable to add a request.'

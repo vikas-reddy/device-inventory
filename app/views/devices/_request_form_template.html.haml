@@ -6,22 +6,32 @@
         %i.icon-remove
   .modal-body
 
-    %form.request_device{"accept-charset" => "UTF-8", :action => "/devices/${deviceId}/ask.js", :method => "post", :id => "request_device_${deviceId}", 'data-remote' => true}
+    %form.form.form-inline.request_device{"accept-charset" => "UTF-8", :action => "/devices/${deviceId}/ask.js", :method => "post", :id => "request_device_${deviceId}", 'data-remote' => true}
       %div{:style => "margin:0;padding:0;display:inline"}
         %input{:name => "utf8", :type => "hidden", :value => "✓"}/
         %input{:name => "_method", :type => "hidden", :value => "put"}/
         %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}/
-      %div
-        By requesting this device, an email is sent out to the owner of the device, who will in turn approve your request. Are you sure you want to send a request?
-      %p.centered-info
-      #dp3.input-append.date{"data-date" => "12-02-2012", "data-date-format" => "dd-mm-yyyy"}
-        %input.span2{:size => "16", :type => "text", :value => "12-02-2012"}
+
+      .instructions
+        By requesting this device, an email is sent out to the owner of the device,
+        who will in turn approve your request. You can specify to the owner of for what period you want this device.
+
+      = fields_for :request do |r|
+        .datepicker.input-append.date{"data-date" => format_date(Date.today), "data-date-format" => "dd-mm-yyyy"}
+          = r.label :from_date
+          = r.text_field :from_date, value: format_date(Date.today), class: 'span2'
           %span.add-on
             %i.icon-th
+        .datepicker.input-append.date{"data-date" => '', "data-date-format" => "dd-mm-yyyy"}
+          = r.label :to_date
+          = r.text_field :to_date, value: '', class: 'span2'
+          %span.add-on
+            %i.icon-th
+
+      %p.centered-info
         %input.request-button.btn.btn-primary{:type => :submit, :value => 'Request'}
         .progress.progress-striped.active.hide
           .bar{style: 'width: 100%'}
   .modal-footer
     .action-buttons
       %a.btn{"data-dismiss" => "modal"} Close
-

@@ -27,4 +27,8 @@ module ApplicationHelper
       content_tag(:span, device.state.to_s.titleize, class: "label #{label_class}")
     end
   end
+
+  def format_date(d)
+    d.strftime('%d-%m-%Y')
+  end
 end

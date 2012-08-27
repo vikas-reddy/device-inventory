@@ -48,6 +48,10 @@ $(document).ready (e) ->
       deviceId = $(this).attr('id').match(/-(\d+)$/)[1]
       $('#device-actions').html($('#device-actions-template').tmpl({deviceId: deviceId}))
       $('#device-actions').modal()
+
+      # Datepickers in request modal
+      $('.datepicker').datepicker()
+
       true
 
     $('#device-actions').ajaxSend (e, xhr, options) ->

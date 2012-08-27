@@ -1,11 +1,14 @@
 class Request < ActiveRecord::Base
-  attr_accessible :device_id, :owner, :requestor
+  attr_accessible :device_id, :owner, :possessor, :from_date, :to_date
 
   # Associations
   belongs_to :device
 
   # Scopes
   scope :pending, where(state: :pending)
+
+  # Validations
+  validates :from_date, presence: true
 
   # Callback
   after_create :send_request_email

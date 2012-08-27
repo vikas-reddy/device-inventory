@@ -67,6 +67,10 @@ class Device < ActiveRecord::Base
     self.assign
   end
 
+  def pending_request
+    requests.pending.order("created_at desc").first
+  end
+
   def self.list_for(u)
     devices = arel_table
     owned_devices = devices.where(devices[:owner].eq(u)).project('devices.*')

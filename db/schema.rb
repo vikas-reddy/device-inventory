@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720095850) do
+ActiveRecord::Schema.define(:version => 20120827102156) do
 
   create_table "accessories", :force => true do |t|
     t.text     "description"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20120720095850) do
     t.datetime "updated_at", :null => false
     t.string   "owner"
     t.string   "state"
+    t.date     "from_date"
+    t.date     "to_date"
   end
 
   create_table "users", :force => true do |t|

@@ -64,3 +64,11 @@
 #reject-form .centered-info {
   margin-bottom: 20px;
 }
+
+.request_device .instructions {
+  margin-bottom: 20px;
+}
+
+.request_device .input-append .add-on {
+  margin-left: -5px !important;
+}
