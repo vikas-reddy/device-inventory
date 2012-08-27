@@ -28,18 +28,19 @@ group :development do
   gem 'pry-rails'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 gem 'jquery-rails'
 gem 'net-ldap'
 gem 'state_machine'
 gem 'haml'
 gem 'thin'
 
-# Paperclip
 gem 'paperclip'
 gem "aws-s3"
 gem "aws-sdk"
-
-#Export Excel
 gem 'spreadsheet'
 
 #Audit Logging for Devices Model using Paper_Trail
