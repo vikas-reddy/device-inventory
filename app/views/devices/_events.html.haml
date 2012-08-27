@@ -1,0 +1,14 @@
+%h3 Events
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Event Type
+      %th Created At
+  %tbody
+    - events.each do |event|
+      %tr
+        %td= event.event_type 
+        %td
+          %abbr{title: event.created_at.localtime}
+            = time_ago_in_words event.created_at.localtime
+            ago

@@ -123,7 +123,7 @@ class DevicesController < ApplicationController
   # GET /devices/1.json
   def show
     @device = Device.find(params[:id])
-    @events = Event.where(:device_id => params[:id])
+    @events = @device.events
     @accessory = Accessory.new
 
     respond_to do |format|
