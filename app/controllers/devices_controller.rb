@@ -18,7 +18,7 @@ class DevicesController < ApplicationController
         workbook = Spreadsheet::Workbook.new
         worksheet = workbook.create_worksheet(name: 'Devices List')
         worksheet.row(0).concat [
-          'Make',
+          'Manufacturer',
           'Model',
           'Serial Number',
           'OS',
@@ -36,7 +36,7 @@ class DevicesController < ApplicationController
         ] 
         @devices.each_with_index { |device, i|
           worksheet.row(i+1).push(
-            device.make,
+            device.manufacturer,
             device.model,
             device.serial_num,
             device.os,
@@ -79,7 +79,7 @@ class DevicesController < ApplicationController
             d = Device.new
             #break if row[0].nil?
             d.serial_num       = row[1]
-            d.make             = row[2]
+            d.manufacturer     = row[2]
             d.model            = row[3]
             d.os               = row[4]
             d.os_version       = row[5]

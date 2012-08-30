@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def device_name(device)
-    "#{device.make} #{device.model}"
+    "#{device.manufacturer} #{device.model}"
   end
 
   def state_label(device)

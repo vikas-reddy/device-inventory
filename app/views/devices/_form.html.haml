@@ -7,12 +7,12 @@
           = f.select :device_type_id, DeviceType.all.map {|dt| [dt.name, dt.id]}
           %span.help-block
             = @device.errors[:device_type].join(", ")
-      .control-group{class: @device.errors[:make].empty? ? '' : 'error'}
-        = f.label :make, class: 'control-label'
+      .control-group{class: @device.errors[:manufacturer].empty? ? '' : 'error'}
+        = f.label :manufacturer, class: 'control-label'
         .controls
-          = f.text_field :make, placeholder: 'Manufacturer of the device'
+          = f.text_field :manufacturer, placeholder: 'Manufacturer of the device'
           %span.help-block
-            = @device.errors[:make].join(", ")
+            = @device.errors[:manufacturer].join(", ")
       .control-group{class: @device.errors[:model].empty? ? '' : 'error'}
         = f.label :model, class: 'control-label'
         .controls

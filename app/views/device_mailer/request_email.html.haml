@@ -5,7 +5,7 @@
     = @requestor_name
   has requested
   %b
-    = "#{@device.make} #{@device.model}"
+    = "#{@device.manufacturer} #{@device.model}"
   from you... for the period starting from
   = request_datespan(@device.pending_request)
 

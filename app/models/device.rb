@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :make, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of
+  attr_accessible :environment, :ip_addr, :mac_addr, :manufacturer, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of
 
   attr_accessor :owner_name, :possesser_name
 
@@ -55,7 +55,7 @@ class Device < ActiveRecord::Base
   # Methods
   def self.search(query)
     q = "%#{query}%"
-    self.where(["make LIKE ? OR model LIKE ? OR os LIKE ? OR os_version LIKE ? OR project LIKE ?", q, q, q, q, q])
+    self.where(["manufacturer LIKE ? OR model LIKE ? OR os LIKE ? OR os_version LIKE ? OR project LIKE ?", q, q, q, q, q])
   end
 
   def os_name
