@@ -10,43 +10,43 @@
       .control-group{class: @device.errors[:manufacturer].empty? ? '' : 'error'}
         = f.label :manufacturer, class: 'control-label'
         .controls
-          = f.text_field :manufacturer, placeholder: 'Manufacturer of the device'
+          = f.text_field :manufacturer, title: t('device.form.manufacturer')
           %span.help-block
             = @device.errors[:manufacturer].join(", ")
       .control-group{class: @device.errors[:model].empty? ? '' : 'error'}
         = f.label :model, 'Product', class: 'control-label'
         .controls
-          = f.text_field :model
+          = f.text_field :model, title: t('device.form.model')
           %span.help-block
             = @device.errors[:model].join(", ")
       .control-group{class: @device.errors[:label].empty? ? '' : 'error'}
         = f.label :label, class: 'control-label'
         .controls
-          = f.text_field :label
+          = f.text_field :label, title: t('device.form.label')
           %span.help-block
             = @device.errors[:label].join(", ")
       .control-group{class: @device.errors[:os].empty? ? '' : 'error'}
         = f.label :os, 'OS', class: 'control-label'
         .controls
-          = f.text_field :os
+          = f.text_field :os, title: t('device.form.os')
           %span.help-block
             = @device.errors[:os].join(", ")
       .control-group{class: @device.errors[:os_version].empty? ? '' : 'error'}
         = f.label :os_version, 'OS Version', class: 'control-label'
         .controls
-          = f.text_field :os_version
+          = f.text_field :os_version, title: t('device.form.os_version')
           %span.help-block
             = @device.errors[:os_version].join(", ")
       .control-group{class: @device.errors[:environment].empty? ? '' : 'error'}
         = f.label :environment, class: 'control-label'
         .controls
-          = f.text_field :environment, placeholder: 'The environment of operation.'
+          = f.text_field :environment, title: t('device.form.environment')
           %span.help-block
             = @device.errors[:environment].join(", ")
       .control-group{class: @device.errors[:project].empty? ? '' : 'error'}
         = f.label :project, class: 'control-label'
         .controls
-          = f.text_field :project
+          = f.text_field :project, title: t('device.form.project')
           %span.help-block
             = @device.errors[:project].join(", ")
       .control-group{class: @device.errors[:owner].empty? ? '' : 'error'}
@@ -64,7 +64,7 @@
       .control-group{class: @device.errors[:property_of].empty? ? '' : 'error'}
         = f.label :property_of, 'Property Of', class: 'control-label'
         .controls
-          = f.text_field :property_of
+          = f.text_field :property_of, title: t('device.form.property_of')
           %span.help-block
             = @device.errors[:property_of].join(", ")
 
@@ -80,37 +80,37 @@
       .control-group{class: @device.errors[:serial_num].empty? ? '' : 'error'}
         = f.label :serial_num, 'Serial Number', class: 'control-label'
         .controls
-          = f.text_field :serial_num
+          = f.text_field :serial_num, title: t('device.form.serial_num')
           %span.help-block
             = @device.errors[:serial_num].join(", ")
       .control-group{class: @device.errors[:imei].empty? ? '' : 'error'}
         = f.label :imei, 'IMEI', class: 'control-label'
         .controls
-          = f.text_field :imei
+          = f.text_field :imei, title: t('device.form.imei')
           %span.help-block
             = @device.errors[:imei].join(", ")
       .control-group{class: @device.errors[:phone_num].empty? ? '' : 'error'}
         = f.label :phone_num, 'Phone Number', class: 'control-label'
         .controls
-          = f.text_field :phone_num
+          = f.text_field :phone_num, title: t('device.form.phone_num')
           %span.help-block
             = @device.errors[:phone_num].join(", ")
       .control-group{class: @device.errors[:service_provider].empty? ? '' : 'error'}
         = f.label :service_provider, 'Service Provider', class: 'control-label'
         .controls
-          = f.text_field :service_provider, placeholder: 'The service provider of the SIM.'
+          = f.text_field :service_provider, title: t('device.form.service_provider')
           %span.help-block
             = @device.errors[:service_provider].join(", ")
       .control-group{class: @device.errors[:mac_addr].empty? ? '' : 'error'}
         = f.label :mac_addr, 'MAC Address', class: 'control-label'
         .controls
-          = f.text_field :mac_addr
+          = f.text_field :mac_addr, title: t('device.form.mac_addr')
           %span.help-block
             = @device.errors[:mac_addr].join(", ")
       .control-group{class: @device.errors[:ip_addr].empty? ? '' : 'error'}
         = f.label :ip_addr, 'IP Address', class: 'control-label'
         .controls
-          = f.text_field :ip_addr
+          = f.text_field :ip_addr, title: t('device.form.ip_addr')
           %span.help-block
             = @device.errors[:ip_addr].join(", ")
   

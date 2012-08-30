@@ -3,3 +3,20 @@
 
 en:
   hello: "Hello world"
+
+  device:
+    form:
+      manufacturer: Manufacturer name such as Apple, Samasung, Asus, Nokia, etc.,
+      model: Product name such as iPhone, iPad2, Kindle Fire, Galaxy S2, etc.,
+      label: Any particular label sticked onto the device box, for identification.
+      os: 'Ex: Android, iOS, Meego'
+      os_version: 'Ex: 4.0 ICS, 4.1 Jellybean, 2.3.7'
+      environment: 'The environment to which the device belongs. Ex: production, development, testing, etc.,'
+      project: The project to which the device belongs
+      mac_addr: 'The MAC address of the device. Ex: 0a:1b:2c:3d:4e:5f'
+      service_provider: The service provider of the SIM present... Airtel, Aircel, Reliance, etc.,
+      property_of: property_of
+      serial_num: The serial number of the device
+      imei: The IMEI number of the device. Should be a 15 or 17-digit one.
+      phone_num: The 10-digit phone number, if SIM is present.
+      ip_addr: The IP address of the device.
