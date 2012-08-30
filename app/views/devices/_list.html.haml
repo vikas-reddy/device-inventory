@@ -2,7 +2,7 @@
   %thead
     %tr
       %th Model
-      %th Type
+      %th Label
       %th OS
       %th Serial 
       %th Project
@@ -13,7 +13,7 @@
     - @devices.each do |device|
       %tr.clickable{'data-url' => device_path(device)}
         %td= "#{device.manufacturer} #{device.model}"
-        %td= device.device_type.try(:name)
+        %td= device.label
         %td= "#{device.os} #{device.os_version}"
         %td= device.serial_num
         %td= device.project
@@ -26,7 +26,7 @@
       %td
         %input.search_init{:name => "search_make", :type => "text", :value => "Search Manufacturer"}/
       %td
-        %input.search_init{:name => "search_type", :type => "text", :value => "Search Type"}/
+        %input.search_init{:name => "search_label", :type => "text", :value => "Search Label"}/
       %td
         %input.search_init{:name => "search_os", :type => "text", :value => "Search OS"}/
       %td
