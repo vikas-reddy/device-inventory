@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :manufacturer, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of
+  attr_accessible :environment, :ip_addr, :mac_addr, :manufacturer, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of, :label, :imei
 
   attr_accessor :owner_name, :possesser_name
 
@@ -72,14 +72,24 @@ class Device < ActiveRecord::Base
     requests.pending.order("created_at desc").first
   end
 
+  # List of all devices... but the ones owned by `current_user` should be 
+  # displayed first... and therefore an Arel union is required for this!
   def self.list_for(u)
-    devices = arel_table
-    owned_devices = devices.where(devices[:owner].eq(u)).project('devices.*')
-    other_devices = devices.where(devices[:owner].eq(u).not).project('devices.*')
+    d1, d2 = arel_table, arel_table
+
+    # Owned by current_user
+    d1 = d1.project('devices.*').where(
+      d1[:state].eq(:not_available).not
+    ).where( d1[:owner].eq(u) )
+
+    # Owned by others
+    d2 = d2.project('devices.*').where(
+      d2[:state].eq(:not_available).not
+    ).where( d2[:owner].eq(u).not )
 
     # TODO: refactor this!
-    # Arel is not producing correct union syntax for UNION. It's surround the whole
-    # select by braces ( ).
-    find_by_sql(owned_devices.union(other_devices).to_sql.delete('()'))
+    # Arel is not producing correct union syntax for UNION. It is surrounding
+    # the whole SELECT by braces ( ).
+    find_by_sql(d1.union(d2).to_sql.delete('()'))
   end
 end
