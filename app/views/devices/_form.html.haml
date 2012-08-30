@@ -14,7 +14,7 @@
           %span.help-block
             = @device.errors[:manufacturer].join(", ")
       .control-group{class: @device.errors[:model].empty? ? '' : 'error'}
-        = f.label :model, class: 'control-label'
+        = f.label :model, 'Product', class: 'control-label'
         .controls
           = f.text_field :model
           %span.help-block
