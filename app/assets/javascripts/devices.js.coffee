@@ -87,7 +87,7 @@ $(document).ready (e) ->
       $(this).closest('.accessory-form-inline').remove()
       return false
 
-    # Owner and Possesser typeahead
+    # Owner and Possessor typeahead
     $('.typeahead', '#device-form').typeahead
       source: (typeahead, query) ->
         $.ajax

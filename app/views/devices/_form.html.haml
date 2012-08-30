@@ -19,6 +19,12 @@
           = f.text_field :model
           %span.help-block
             = @device.errors[:model].join(", ")
+      .control-group{class: @device.errors[:label].empty? ? '' : 'error'}
+        = f.label :label, class: 'control-label'
+        .controls
+          = f.text_field :label
+          %span.help-block
+            = @device.errors[:label].join(", ")
       .control-group{class: @device.errors[:os].empty? ? '' : 'error'}
         = f.label :os, 'OS', class: 'control-label'
         .controls
@@ -77,6 +83,12 @@
           = f.text_field :serial_num
           %span.help-block
             = @device.errors[:serial_num].join(", ")
+      .control-group{class: @device.errors[:imei].empty? ? '' : 'error'}
+        = f.label :imei, 'IMEI', class: 'control-label'
+        .controls
+          = f.text_field :imei
+          %span.help-block
+            = @device.errors[:imei].join(", ")
       .control-group{class: @device.errors[:phone_num].empty? ? '' : 'error'}
         = f.label :phone_num, 'Phone Number', class: 'control-label'
         .controls

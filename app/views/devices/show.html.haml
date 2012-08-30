@@ -16,6 +16,9 @@
         %b OS:
         = "#{@device.os_name}"
       .field
+        %b Label:
+        = "#{@device.label}"
+      .field
         %b Project:
         = "#{@device.project}"
       .field
@@ -28,7 +31,7 @@
         %b Owner:
         = "#{@device.owner}"
       .field
-        %b Possesser:
+        %b Possessor:
         - if @device.available?
           %span.label.label-info None
         - else
@@ -39,6 +42,9 @@
       .field
         %b Mac Address:
         = "#{@device.mac_addr}"
+      .field
+        %b IMEI:
+        = "#{@device.imei}"
       .field
         %b Network:
         = "#{@device.service_provider} (#{@device.phone_num})"
