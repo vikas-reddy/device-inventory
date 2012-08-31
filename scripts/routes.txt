@@ -1,0 +1,67 @@
+                     signin GET    /signin(.:format)                                  sessions#new
+                    signout DELETE /signout(.:format)                                 sessions#destroy
+             search_devices GET    /devices/search(.:format)                          devices#search
+             export_devices GET    /devices/export(.:format)                          devices#export
+             import_devices POST   /devices/import(.:format)                          devices#import
+                 ask_device PUT    /devices/:id/ask(.:format)                         devices#ask
+             receive_device PUT    /devices/:id/receive(.:format)                     devices#receive
+    make_unavailable_device PUT    /devices/:id/make_unavailable(.:format)            devices#make_unavailable
+      make_available_device PUT    /devices/:id/make_available(.:format)              devices#make_available
+         device_accessories GET    /devices/:device_id/accessories(.:format)          accessories#index
+                            POST   /devices/:device_id/accessories(.:format)          accessories#create
+       new_device_accessory GET    /devices/:device_id/accessories/new(.:format)      accessories#new
+      edit_device_accessory GET    /devices/:device_id/accessories/:id/edit(.:format) accessories#edit
+           device_accessory GET    /devices/:device_id/accessories/:id(.:format)      accessories#show
+                            PUT    /devices/:device_id/accessories/:id(.:format)      accessories#update
+                            DELETE /devices/:device_id/accessories/:id(.:format)      accessories#destroy
+                    devices GET    /devices(.:format)                                 devices#index
+                            POST   /devices(.:format)                                 devices#create
+                 new_device GET    /devices/new(.:format)                             devices#new
+                edit_device GET    /devices/:id/edit(.:format)                        devices#edit
+                     device GET    /devices/:id(.:format)                             devices#show
+                            PUT    /devices/:id(.:format)                             devices#update
+                            DELETE /devices/:id(.:format)                             devices#destroy
+               search_users GET    /users/search(.:format)                            users#search
+                      users GET    /users(.:format)                                   users#index
+                            POST   /users(.:format)                                   users#create
+                   new_user GET    /users/new(.:format)                               users#new
+                  edit_user GET    /users/:id/edit(.:format)                          users#edit
+                       user GET    /users/:id(.:format)                               users#show
+                            PUT    /users/:id(.:format)                               users#update
+                            DELETE /users/:id(.:format)                               users#destroy
+            approve_request PUT    /requests/:id/approve(.:format)                    requests#approve
+             reject_request PUT    /requests/:id/reject(.:format)                     requests#reject
+                   requests GET    /requests(.:format)                                requests#index
+                   sessions GET    /sessions(.:format)                                sessions#index
+                            POST   /sessions(.:format)                                sessions#create
+                new_session GET    /sessions/new(.:format)                            sessions#new
+               edit_session GET    /sessions/:id/edit(.:format)                       sessions#edit
+                    session GET    /sessions/:id(.:format)                            sessions#show
+                            PUT    /sessions/:id(.:format)                            sessions#update
+                            DELETE /sessions/:id(.:format)                            sessions#destroy
+            admin_dashboard GET    /admin/dashboard(.:format)                         admin/dashboard#index
+  unavailable_admin_devices GET    /admin/devices/unavailable(.:format)               admin/devices#unavailable
+          edit_admin_device GET    /admin/devices/:id/edit(.:format)                  admin/devices#edit
+         admin_device_types GET    /admin/device_types(.:format)                      admin/device_types#index
+                            POST   /admin/device_types(.:format)                      admin/device_types#create
+      new_admin_device_type GET    /admin/device_types/new(.:format)                  admin/device_types#new
+     edit_admin_device_type GET    /admin/device_types/:id/edit(.:format)             admin/device_types#edit
+          admin_device_type GET    /admin/device_types/:id(.:format)                  admin/device_types#show
+                            PUT    /admin/device_types/:id(.:format)                  admin/device_types#update
+                            DELETE /admin/device_types/:id(.:format)                  admin/device_types#destroy
+      admin_accessory_types GET    /admin/accessory_types(.:format)                   admin/accessory_types#index
+                            POST   /admin/accessory_types(.:format)                   admin/accessory_types#create
+   new_admin_accessory_type GET    /admin/accessory_types/new(.:format)               admin/accessory_types#new
+  edit_admin_accessory_type GET    /admin/accessory_types/:id/edit(.:format)          admin/accessory_types#edit
+       admin_accessory_type GET    /admin/accessory_types/:id(.:format)               admin/accessory_types#show
+                            PUT    /admin/accessory_types/:id(.:format)               admin/accessory_types#update
+                            DELETE /admin/accessory_types/:id(.:format)               admin/accessory_types#destroy
+search_admin_administrators GET    /admin/administrators/search(.:format)             admin/administrators#search
+       admin_administrators GET    /admin/administrators(.:format)                    admin/administrators#index
+                            POST   /admin/administrators(.:format)                    admin/administrators#create
+    new_admin_administrator GET    /admin/administrators/new(.:format)                admin/administrators#new
+   edit_admin_administrator GET    /admin/administrators/:id/edit(.:format)           admin/administrators#edit
+        admin_administrator GET    /admin/administrators/:id(.:format)                admin/administrators#show
+                            PUT    /admin/administrators/:id(.:format)                admin/administrators#update
+                            DELETE /admin/administrators/:id(.:format)                admin/administrators#destroy
+                       root        /                                                  devices#index
