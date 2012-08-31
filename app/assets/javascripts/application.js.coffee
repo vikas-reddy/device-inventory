@@ -21,10 +21,10 @@ $(document).ready ->
     false
 
   # Application-wide form tooltips
-  $('input[type="text"]').each (idx, inpElem) ->
-    unless $(inpElem).attr('title') == undefined
-      $(inpElem).tooltip
-        title: $(inpElem).attr('title')
+  $('form').on 'focus', ':text', (e) ->
+    unless $(this).attr('title') == undefined
+      $(this).tooltip
+        title: $(this).attr('title')
         placement: 'right'
         trigger: 'focus'
     true

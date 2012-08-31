@@ -18,5 +18,9 @@ en:
       property_of: property_of
       serial_num: The serial number of the device
       imei: The IMEI number of the device. Should be a 15 or 17-digit one.
-      phone_num: The 10-digit phone number, if SIM is present.
+      phone_num: The 10-digit phone number, if SIM is present. Can leave this blank.
       ip_addr: The IP address of the device.
+
+  accessory:
+    form:
+      comments: Key in more details or comments like OEM Charger, 32GB SD card, torn off casing, damaged earpiece, etc.,

@@ -2,7 +2,7 @@
   .well.accessory-form-inline
     = select_tag  %|device[accessories_attributes][${index}][accessory_type_id]|, options_for_select(AccessoryType.all.map {|at| [at.name, at.id]}), id: %|device_accessories_attributes_${index}_accessory_type_id|, placeholder: 'Accessory Type'
     = text_field_tag %|device[accessories_attributes][${index}][manufacturer]|, '', id: %|device_accessories_attributes_${index}_manufacturer|, placeholder: 'Manufacturer'
-    = text_field_tag %|device[accessories_attributes][${index}][description]|, '', id: %|device_accessories_attributes_${index}_description|, placeholder: 'Comments'
+    = text_field_tag %|device[accessories_attributes][${index}][description]|, '', id: %|device_accessories_attributes_${index}_description|, placeholder: 'Comments', title: t('accessory.form.comments')
     .pull-right
       %a.remove-accessory{href: '#'}
         %i.icon-remove
