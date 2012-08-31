@@ -28,7 +28,8 @@ class DevicesController < ApplicationController
         worksheet = workbook.create_worksheet(name: 'Devices List')
         worksheet.row(0).concat [
           'Manufacturer',
-          'Model',
+          'Product',
+          'Label',
           'Serial Number',
           'OS',
           'OS Version',
@@ -36,6 +37,7 @@ class DevicesController < ApplicationController
           'Project',
           'Status',
           'Provider',
+          'IMEI',
           'Phone',
           'MAC Address',
           'IP Address',
@@ -47,6 +49,7 @@ class DevicesController < ApplicationController
           worksheet.row(i+1).push(
             device.manufacturer,
             device.model,
+            device.label,
             device.serial_num,
             device.os,
             device.os_version,
@@ -54,6 +57,7 @@ class DevicesController < ApplicationController
             device.project,
             device.state,
             device.service_provider,
+            device.imei,
             device.phone_num,
             device.mac_addr,
             device.ip_addr,
