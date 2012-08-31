@@ -7,6 +7,7 @@ DeviceInventory::Application.routes.draw do
     collection do
       get :search
       get :export
+      get :unavailable
       post :import
     end
 
@@ -37,12 +38,6 @@ DeviceInventory::Application.routes.draw do
 
   namespace :admin do
     get 'dashboard' => 'dashboard#index'
-
-    resources :devices, only: :edit do
-      collection do
-        get :unavailable
-      end
-    end
     resources :device_types
     resources :accessory_types
     resources :administrators do

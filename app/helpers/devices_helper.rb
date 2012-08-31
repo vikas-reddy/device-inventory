@@ -11,7 +11,7 @@ module DevicesHelper
         'data-original-title' => 'Waiting Approval'
       )
     when :not_available
-      link_to 'Edit', edit_admin_device_path(device)
+      link_to 'Edit', edit_device_path(device)
     end
   end
 end

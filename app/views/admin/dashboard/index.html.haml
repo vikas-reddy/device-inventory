@@ -50,5 +50,5 @@
               = f.submit 'Add Accessory Type', class: 'btn btn-primary'
 
 .row-fluid
-  %h3= link_to "Unavailable devices (#{Device.unavailable.count})", unavailable_admin_devices_path, rel: 'tooltip', title: t('devices.unavailable')
+  %h3= link_to "Unavailable devices (#{Device.unavailable.count})", unavailable_devices_path, rel: 'tooltip', title: t('devices.unavailable')
 
