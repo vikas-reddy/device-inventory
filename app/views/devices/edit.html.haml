@@ -9,6 +9,7 @@
         Editing
         = device_name(@device)
     .pull-right
+      = state_label(@device)
       - if @device.not_available?
         = link_to 'Make Available', make_available_device_path(@device), method: :put, class: 'btn btn-primary', data: {confirm: 'Are you sure you want to make this device available?'}
       - else
