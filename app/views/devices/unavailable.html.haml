@@ -1,0 +1,11 @@
+.row-fluid
+  .pull-left
+    %h2 Unavailable Devices
+
+%legend
+
+- if @devices.empty?
+  .no_device
+    There are no unavailable devices in the database at the moment. All good!
+- else
+  = render 'devices/list'

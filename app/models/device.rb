@@ -17,6 +17,9 @@ class Device < ActiveRecord::Base
   validates :phone_num,  format: {with: %r|^[1-9]\d{9}$|,     message: "should be 10-digit",                  allow_blank: true}
   validates :serial_num, uniqueness: true,                    presence: true
 
+  # Scopes
+  scope :unavailable, where(state: :not_available)
+
   # Paperclip
   has_attached_file :device_photo,
     styles: {thumb: "100x100#", small: "250x250>"},

@@ -37,6 +37,12 @@ DeviceInventory::Application.routes.draw do
 
   namespace :admin do
     get 'dashboard' => 'dashboard#index'
+
+    resources :devices, only: :edit do
+      collection do
+        get :unavailable
+      end
+    end
     resources :device_types
     resources :accessory_types
     resources :administrators do

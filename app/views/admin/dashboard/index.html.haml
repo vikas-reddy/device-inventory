@@ -48,3 +48,7 @@
             = form_for [:admin, @accessory_type], html: {class: 'form-inline'} do |f|
               = f.text_field :name, placeholder: 'Accessory Type'
               = f.submit 'Add Accessory Type', class: 'btn btn-primary'
+
+.row-fluid
+  %h3= link_to "Unavailable devices (#{Device.unavailable.count})", unavailable_admin_devices_path, rel: 'tooltip', title: t('devices.unavailable')
+

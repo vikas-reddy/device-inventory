@@ -1,12 +1,21 @@
 class DevicesController < ApplicationController
   before_filter :login_required
-  before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy, :unavailable]
 
   # GET /devices
   def index
     @devices = Device.list_for(current_user)
     respond_to do |format|
       format.html # index.html.erb 
+    end
+  end
+
+  # GET /admin/devices/unavailable
+  def unavailable
+    @devices = Device.unavailable
+
+    respond_to do |format|
+      format.html
     end
   end
 

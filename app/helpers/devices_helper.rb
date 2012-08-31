@@ -10,6 +10,8 @@ module DevicesHelper
         'rel' => 'popover', 'data-content' => "This device has already been requested by `#{device.requests.pending.first.try(:requestor)}`",
         'data-original-title' => 'Waiting Approval'
       )
+    when :not_available
+      link_to 'Edit', edit_admin_device_path(device)
     end
   end
 end

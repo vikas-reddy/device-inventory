@@ -4,6 +4,9 @@
 en:
   hello: "Hello world"
 
+  devices:
+    unavailable: Click here to see all the devices which are made unavailable.
+
   device:
     form:
       manufacturer: Manufacturer name such as Apple, Samasung, Asus, Nokia, etc.,

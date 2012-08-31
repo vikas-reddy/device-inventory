@@ -15,4 +15,7 @@ $(document).ready (e) ->
           true
       true
     true
+
+  $('[rel="tooltip"]').tooltip()
+
   true
