@@ -13,14 +13,36 @@
 #
 #
 
+# Database credentials
 dbname="device_inventory"
 dbuser="epocrates"
 dbpasswd="epocrates123"
-dump_name="device-inventory-$(date +'%Y-%m-%d-%H%M').xz"
-save_path="${HOME}/DeviceInventory/db-dumps"
 
+# FTP credentials
+ftphost="ftp.xxxxxxx.xxx"
+ftpuser="xxxxxxxxx"
+ftppasswd="xxxxxxxxxxxx"
+ftpbasedir="DeviceInventory/db-dumps"
+
+# Local file path
+dump_name="device-inventory-$(date +'%Y-%m-%d-%H%M').sql.xz"
+save_path="${HOME}/DeviceInventory/db-dumps"
 dump_path="${save_path}/${dump_name}"
 
-# Dump
-mysqldump -u "${dbuser}" -p"${dbpasswd}" \
+# MySQL dump
+# -p$dbpasswd if $dbpasswd?
+mysqldump \
+    -u "${dbuser}" \
+    $( [[ -n "${dbpasswd}" ]] && echo "-p${dbpasswd}" ) \
     "${dbname}" | xz > "${dump_path}";
+
+if [[ $? -eq 0 ]]; then
+
+    # Upload to FTP
+    lftp \
+        -e "cd ${ftpbasedir} && put '${dump_name}' && exit" \
+        -u "${ftpuser}","${ftppasswd}" \
+        "${ftphost}" \
+        1>&2 2> /dev/null; # No output and errors, please!
+
+fi
