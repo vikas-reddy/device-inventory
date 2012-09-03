@@ -19,6 +19,7 @@ DeviceInventory::Application.routes.draw do
     end
 
     resources :accessories
+    resources :events, only: [:index]
   end
 
   resources :users do

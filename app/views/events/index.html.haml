@@ -1,0 +1,8 @@
+.row-fluid
+  %ul.pager.pull-left
+    %li.prev
+      = link_to '<< Back to Device', @device
+
+%h2= "Events for #{device_name(@device)}"
+= render 'list', events: @events
+= paginate @events

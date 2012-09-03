@@ -136,7 +136,7 @@ class DevicesController < ApplicationController
   # GET /devices/1.json
   def show
     @device = Device.find(params[:id])
-    @events = @device.events
+    @events = @device.events.limit(10)
     @accessory = Accessory.new
 
     respond_to do |format|

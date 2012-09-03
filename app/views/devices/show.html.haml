@@ -61,6 +61,14 @@
       .img-placeholder.small
         = image_tag @device.device_photo.url(:small)
 
-= render 'accessories/list'
+.well
+  = render 'accessories/list'
 
-= render 'events', events: @events
+.well
+  %h3 Events
+
+  - if @events.empty?
+    No events associated for this device so far!
+  - else
+    = render 'events/list', events: @events
+    = link_to 'See all events', device_events_path(@device)

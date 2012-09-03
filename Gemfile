@@ -45,6 +45,7 @@ gem 'paperclip'
 gem "aws-s3"
 gem "aws-sdk"
 gem 'spreadsheet'
+gem 'kaminari'
 
 #Audit Logging for Devices Model using Paper_Trail
 #gem 'paper_trail'
