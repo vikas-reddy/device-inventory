@@ -17,3 +17,20 @@
 
   .row-fluid
     = render 'form'
+
+#update-device-modal.modal.fade
+  .modal-header
+    %h3
+      Reason for updation
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %i.icon-remove
+  .modal-body
+    .instructions
+      You can add some comments here:
+    %form.form
+      %textarea{name: :comment}
+      %p.centered-info
+        %input.btn.btn-primary{:type => :submit, :value => 'Update'}
+  .modal-footer
+    .action-buttons
+      %a.btn{"data-dismiss" => "modal"} Close

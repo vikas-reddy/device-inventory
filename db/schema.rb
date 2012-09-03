@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830081323) do
+ActiveRecord::Schema.define(:version => 20120903094034) do
 
   create_table "accessories", :force => true do |t|
     t.text     "description"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120830081323) do
     t.integer  "device_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "comments"
   end
 
   create_table "requests", :force => true do |t|

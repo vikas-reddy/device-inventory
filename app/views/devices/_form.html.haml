@@ -1,4 +1,6 @@
 = form_for(@device, html: {id: 'device-form', class: 'form-horizontal new_device', multipart: true}) do |f|
+  .hide
+    = hidden_field_tag :comment
   .row-fluid
     .span6
       .control-group{class: @device.errors[:device_type].empty? ? '' : 'error'}
@@ -126,4 +128,4 @@
       Add Accessory
 
   .actions
-    = f.submit :class => "btn btn-primary btn-large"
+    = f.submit :class => "btn btn-primary btn-large", :id => @device.new_record? ? 'create-device' : 'update-device'

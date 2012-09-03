@@ -77,7 +77,7 @@ class Device < ActiveRecord::Base
 
   # Update the attributes, record and event with all the changes
   # List of changes is fetched from ActiveRecord::Dirty
-  def update_attribs(params)
+  def update_attribs(params, comment)
     assign_attributes(params.except(*Device.protected_attributes))
 
     if owner_changed?
@@ -94,7 +94,7 @@ class Device < ActiveRecord::Base
 
     ActiveRecord::Base.transaction do
       self.save!
-      Event.record_event(self.id, message)
+      Event.record_event(self.id, message, comment)
       all_done = true
     end
 

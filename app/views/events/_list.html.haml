@@ -2,11 +2,13 @@
   %thead
     %tr
       %th Event Type
+      %th Comments
       %th Occurred At
   %tbody
     - events.each do |event|
       %tr
         %td= event.event_type.html_safe
+        %td= event.comments
         %td
           %abbr{title: event.created_at.localtime}
             = time_ago_in_words event.created_at.localtime

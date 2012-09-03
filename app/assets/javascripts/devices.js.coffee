@@ -97,4 +97,19 @@ $(document).ready (e) ->
           success: (data) ->
             typeahead.process(data)
 
+    # Show modal and ask for comments while updating device
+    $('#update-device', '#device-form').on 'click', (e) ->
+      e.preventDefault()
+      $('textarea', '#update-device-modal').val('')
+      $('#update-device-modal').modal()
+      true
+
+    # Add the comment to the original form and submit it synchronously
+    $('#update-device-modal').on 'click', 'input[type="submit"]', (e) ->
+      e.preventDefault()
+      $('input[name="comment"]', '#device-form').val(
+        $('#update-device-modal textarea').val()
+      )
+      $('#device-form').submit()
+
   return true

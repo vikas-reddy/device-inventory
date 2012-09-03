@@ -189,7 +189,7 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
 
     respond_to do |format|
-      if @device.update_attribs(params[:device])
+      if @device.update_attribs(params[:device], params[:comment])
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
       else
         flash.now[:error] = "Some errors prevented the data from updating"
