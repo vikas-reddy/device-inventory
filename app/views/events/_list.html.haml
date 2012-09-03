@@ -6,7 +6,7 @@
   %tbody
     - events.each do |event|
       %tr
-        %td= event.event_type 
+        %td= event.event_type.html_safe
         %td
           %abbr{title: event.created_at.localtime}
             = time_ago_in_words event.created_at.localtime

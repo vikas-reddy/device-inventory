@@ -185,24 +185,15 @@ class DevicesController < ApplicationController
   end
 
   # PUT /devices/1
-  # PUT /devices/1.json
   def update
     @device = Device.find(params[:id])
-    update_owner = @device.owner&&@device.owner!= params[:device][:owner] ? true : false
-    message = update_owner ? "Device owner has been changed from #{@device.owner} to #{params[:device][:owner]}" : "Device has been updated"
-    if update_owner
-      DeviceMailer.ownership_email(current_user,params[:device][:owner], @device).deliver
-    end
 
     respond_to do |format|
-      if @device.update_attributes(params[:device])
-        Event.record_event(@device.id, message)
+      if @device.update_attribs(params[:device])
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
-        format.json { head :no_content }
       else
         flash.now[:error] = "Some errors prevented the data from updating"
         format.html { render action: "edit" }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end

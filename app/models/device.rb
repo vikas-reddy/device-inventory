@@ -75,6 +75,32 @@ class Device < ActiveRecord::Base
     requests.pending.order("created_at desc").first
   end
 
+  # Update the attributes, record and event with all the changes
+  # List of changes is fetched from ActiveRecord::Dirty
+  def update_attribs(params)
+    assign_attributes(params.except(*Device.protected_attributes))
+
+    if owner_changed?
+      DeviceMailer.ownership_email(owner_was, owner, self).deliver
+    end
+
+    # TODO: Put it elsewhere
+    message = "Updated: <br />"
+    message << changes.map do |k,v|
+      "<b>#{k}</b>: '#{v[0]}' -> '#{v[1]}'"
+    end.join("<br />")
+
+    all_done = false
+
+    ActiveRecord::Base.transaction do
+      self.save!
+      Event.record_event(self.id, message)
+      all_done = true
+    end
+
+    all_done
+  end
+
   # List of all devices... but the ones owned by `current_user` should be 
   # displayed first... and therefore an Arel union is required for this!
   def self.list_for(u)
