@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
 
   paginates_per 20
 
-  def self.record_event(device_id, message, comments)
+  def self.record_event(device_id, message, comments = '')
     Event.create(:device_id => device_id, :event_type => message, :comments => comments)
   end
 end
