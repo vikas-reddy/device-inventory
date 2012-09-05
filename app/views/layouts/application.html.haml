@@ -34,6 +34,9 @@
                   %a{href: requests_path}
                     Requests
                     %span.badge.badge-important= Request.pending_count(current_user)
+                %li
+                  %a{href: %{http://192.168.10.41:8080/BIRT/frameset?__report=DeviceInfo.rptdesign}, target: '_blank'}
+                    Reports
             %ul.nav.pull-right
               %li
                 %form.navbar-form.pull-right{action: search_devices_path}
