@@ -37,4 +37,10 @@ module ApplicationHelper
   def request_datespan(req)
     %{#{req.from_date} to #{req.to_date.nil? ? 'NONE' : req.to_date}} if req.is_a?(Request)
   end
+
+
+  def labeled_form_for(object, options = {}, &block)
+    options[:builder] = LabeledFormBuilder
+    form_for(object, options, &block)
+  end
 end
