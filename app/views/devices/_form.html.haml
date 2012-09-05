@@ -57,18 +57,18 @@
           = f.text_field :owner, class: 'typeahead', placeholder: 'Start typing in the user name', autocomplete: 'off'
           %span.help-block
             = @device.errors[:owner].join(", ")
-      .control-group{class: @device.errors[:possessor].empty? ? '' : 'error'}
-        = f.label :possessor, class: 'control-label'
-        .controls
-          = f.text_field :possessor, class: 'typeahead', placeholder: 'Start typing in the user name', autocomplete: 'off'
-          %span.help-block
-            = @device.errors[:possessor].join(", ")
       .control-group{class: @device.errors[:property_of].empty? ? '' : 'error'}
         = f.label :property_of, 'Property Of', class: 'control-label'
         .controls
           = f.text_field :property_of, title: t('device.form.property_of')
           %span.help-block
             = @device.errors[:property_of].join(", ")
+      .control-group{class: @device.errors[:serial_num].empty? ? '' : 'error'}
+        = f.label :serial_num, 'Serial Number', class: 'control-label'
+        .controls
+          = f.text_field :serial_num, title: t('device.form.serial_num')
+          %span.help-block
+            = @device.errors[:serial_num].join(", ")
 
     .span6
       .control-group{class: @device.errors[:device_photo].empty? ? '' : 'error'}
@@ -79,12 +79,6 @@
           = f.file_field :device_photo
           %span.help-block
             = @device.errors[:device_photo].join(", ")
-      .control-group{class: @device.errors[:serial_num].empty? ? '' : 'error'}
-        = f.label :serial_num, 'Serial Number', class: 'control-label'
-        .controls
-          = f.text_field :serial_num, title: t('device.form.serial_num')
-          %span.help-block
-            = @device.errors[:serial_num].join(", ")
       .control-group{class: @device.errors[:imei].empty? ? '' : 'error'}
         = f.label :imei, 'IMEI', class: 'control-label'
         .controls
