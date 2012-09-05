@@ -203,7 +203,7 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
 
     ActiveRecord::Base.transaction do
-      @device.ask
+      @device.ask!
       req = @device.requests.build(params[:request]) do |req|
         req.owner     = @device.owner
         req.requestor = current_user
