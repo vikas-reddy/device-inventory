@@ -72,3 +72,15 @@
 .request_device .input-append .add-on {
   margin-left: -5px !important;
 }
+
+.paging_two_button a {
+  text-decoration: none !important;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
