@@ -169,6 +169,7 @@ class DevicesController < ApplicationController
   # POST /devices
   # POST /devices.json
   def create
+    params[:device].merge!({:created_by => current_user})
     @device = Device.new(params[:device])
 
     respond_to do |format|
@@ -188,6 +189,7 @@ class DevicesController < ApplicationController
   def update
     @device = Device.find(params[:id])
 
+    params[:device].merge!({:updated_by => current_user})
     respond_to do |format|
       if @device.update_attribs(params[:device], params[:comment])
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }

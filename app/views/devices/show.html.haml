@@ -38,6 +38,12 @@
           = "#{@device.possessor}"
           - if @device.in_use? and (is_admin? or is_owner?(@device))
             = link_to 'Receive', receive_device_path(@device), method: :put, class: 'btn btn-primary btn-mini'
+      .field
+        %b Created On:
+        = "#{@device.created_at.strftime('%d-%m-%y')}"
+      .field
+        %b Created By:
+        = "#{@device.created_by}"
     .span4
       .field
         %b Mac Address:
@@ -57,6 +63,12 @@
       .field
         %b Property Of:
         = "#{@device.property_of}"
+      .field
+        %b Updated On:
+        = "#{@device.updated_at.strftime('%d-%m-%y')}"
+      .field
+        %b Updated By:
+        = !@device.updated_by.blank? ? "#{@device.updated_by}" : "#{@device.created_by}"
     .span4
       .img-placeholder.small
         = image_tag @device.device_photo.url(:small)

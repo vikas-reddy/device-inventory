@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903094034) do
+ActiveRecord::Schema.define(:version => 20121003084019) do
 
   create_table "accessories", :force => true do |t|
     t.text     "description"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20120903094034) do
     t.string   "property_of"
     t.string   "label"
     t.string   "imei"
+    t.string   "created_by"
+    t.string   "updated_by"
   end
 
   create_table "events", :force => true do |t|

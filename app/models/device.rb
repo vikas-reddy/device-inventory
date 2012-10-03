@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 
-  attr_accessible :environment, :ip_addr, :mac_addr, :manufacturer, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of, :label, :imei
+  attr_accessible :environment, :ip_addr, :mac_addr, :manufacturer, :model, :os, :os_version, :phone_num, :project, :serial_num, :service_provider, :device_type_id, :state, :device_photo, :device_photo_file_name, :device_photo_file_size, :device_photo_content_type, :accessories_attributes, :owner, :possessor, :property_of, :label, :imei, :created_by, :updated_by
 
   attr_accessor :owner_name, :possesser_name
 
