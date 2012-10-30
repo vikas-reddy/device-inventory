@@ -51,9 +51,9 @@ DeviceInventory::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { 
-    :address              => 'smtp.imaginea.com',
-    :port                 => 587,
-    :domain               => 'www.pramati.com',
+    :address              => 'smtp.pramati.com',
+    :port                 => 25,
+    :domain               => 'pramati.com',
     :user_name            => 'bmtrac@pramati.com',
     :password             => 'bmtrac',
     :authentication       => :login,
